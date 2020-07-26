@@ -603,7 +603,7 @@ Partial Class MainForm
         'CboAMGK
         '
         Me.CboAMGK.FormattingEnabled = True
-        Me.CboAMGK.Location = New System.Drawing.Point(110, 305)
+        Me.CboAMGK.Location = New System.Drawing.Point(111, 305)
         Me.CboAMGK.Name = "CboAMGK"
         Me.CboAMGK.Size = New System.Drawing.Size(194, 21)
         Me.CboAMGK.TabIndex = 12
@@ -611,7 +611,7 @@ Partial Class MainForm
         'CboLeadGK
         '
         Me.CboLeadGK.FormattingEnabled = True
-        Me.CboLeadGK.Location = New System.Drawing.Point(110, 279)
+        Me.CboLeadGK.Location = New System.Drawing.Point(111, 279)
         Me.CboLeadGK.Name = "CboLeadGK"
         Me.CboLeadGK.Size = New System.Drawing.Size(194, 21)
         Me.CboLeadGK.TabIndex = 11
@@ -681,7 +681,7 @@ Partial Class MainForm
         '
         'TxtPickupDay
         '
-        Me.TxtPickupDay.Location = New System.Drawing.Point(110, 512)
+        Me.TxtPickupDay.Location = New System.Drawing.Point(111, 512)
         Me.TxtPickupDay.Name = "TxtPickupDay"
         Me.TxtPickupDay.Size = New System.Drawing.Size(76, 20)
         Me.TxtPickupDay.TabIndex = 18
@@ -697,7 +697,7 @@ Partial Class MainForm
         '
         'TxtDimFactor
         '
-        Me.TxtDimFactor.Location = New System.Drawing.Point(110, 486)
+        Me.TxtDimFactor.Location = New System.Drawing.Point(111, 486)
         Me.TxtDimFactor.Name = "TxtDimFactor"
         Me.TxtDimFactor.Size = New System.Drawing.Size(195, 20)
         Me.TxtDimFactor.TabIndex = 17
@@ -729,7 +729,7 @@ Partial Class MainForm
         '
         'TxtRateValidity
         '
-        Me.TxtRateValidity.Location = New System.Drawing.Point(110, 460)
+        Me.TxtRateValidity.Location = New System.Drawing.Point(111, 460)
         Me.TxtRateValidity.Name = "TxtRateValidity"
         Me.TxtRateValidity.Size = New System.Drawing.Size(195, 20)
         Me.TxtRateValidity.TabIndex = 16

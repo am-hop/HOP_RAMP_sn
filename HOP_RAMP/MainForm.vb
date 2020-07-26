@@ -223,6 +223,9 @@ Public Class MainForm
             For Each tb As TextBox In gb.Controls.OfType(Of TextBox)()
                 tb.Clear()
             Next
+            'For Each cb As ComboBox In cb.Controls.OfType(Of ComboBox)()
+            '    cb.Items.Clear()
+            'Next
         Next
         RtbJournal.ResetText()
         RtbQA.ResetText()
@@ -237,6 +240,12 @@ Public Class MainForm
         LblCustomerHeader.Text = String.Empty
         LblID.Text = String.Empty
         LblCount.Text = String.Empty
+        'CboAMGK.SelectedItem.Clear()
+        'CboAnalyst.Items.Clear()
+        'CboAwardStatus.Items.Clear()
+        'CboLeadRegion.Items.Clear()
+        'CboLeadRegion.Items.Clear()
+
         LoadAllBids()
     End Sub
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
