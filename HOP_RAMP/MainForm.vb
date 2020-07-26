@@ -2,9 +2,6 @@
 Imports System.Data.SQLite
 Public Class MainForm
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TreeView1.Nodes.Add("My Documents")
-        'PopulateTreeView(My.Computer.FileSystem.SpecialDirectories.MyDocuments, TreeView1.Nodes(0))
-        'ListView for Bids
         With LvwBidList
             .Columns.Clear()
             .FullRowSelect = True
@@ -30,25 +27,11 @@ Public Class MainForm
             .Columns.Add("Assigned")
             .Columns.Add("Received")
             .Columns.Add("Port Launch")
-            ' .Columns.Add("Last Modified") 'Todo: add this function to be shown in the listview
         End With
         TxtBidID.Focus()
         LoadAllBids()
     End Sub
-    'Public Sub PopulateTreeView(ByVal directoryValue As String, ByVal parentNode As TreeNode)
-    '    Try
-    '        Dim directoryArray As String() = Directory.GetDirectories(directoryValue)
-    '        If directoryArray.Length <> 0 Then
-    '            Dim currentDirectory As String
-    '            For Each currentDirectory In directoryArray
-    '                Dim myNode As TreeNode = New TreeNode(currentDirectory)
-    '                parentNode.Nodes.Add(myNode)
-    '            Next
-    '        End If
-    '    Catch unauthorized As UnauthorizedAccessException
-    '        parentNode.Nodes.Add("Access Denied")
-    '    End Try
-    'End Sub
+
     Private Sub LvwBidList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LvwBidList.SelectedIndexChanged
         If BtnSave.Enabled = True Then
             BtnSave.Enabled = False
@@ -62,8 +45,8 @@ Public Class MainForm
                 dr = cmd.ExecuteReader
                 While dr.Read
                     LblID.Text = dr.Item(0).ToString
-                    ChkUSBid.Checked = dr.Item(1)
-                    ChkBidActive.Checked = dr.Item(2)
+                    ChkUSBid.Checked = dr.Item(1).ToString ' changed all chkboxes to .tostring
+                    ChkBidActive.Checked = dr.Item(2).ToString ' changed all chkboxes to .tostring
                     TxtBidID.Text = dr.Item(3).ToString
                     TxtCustomer.Text = dr.Item(4).ToString
                     LblCustomerHeader.Text = dr.Item(4).ToString & " .:. " & dr.Item(10) & " .:. " & dr.Item(11) & "%"
@@ -74,8 +57,8 @@ Public Class MainForm
                     TxtNoOfRounds.Text = dr.Item(9).ToString
                     TxtStatus.Text = dr.Item(10).ToString
                     TxtPercentComplete.Text = dr.Item(11).ToString
-                    TxtAwardStatus.Text = dr.Item(12).ToString
-                    TxtLeadRegion.Text = dr.Item(13).ToString
+                    CboAwardStatus.Text = dr.Item(12).ToString
+                    CboLeadRegion.Text = dr.Item(13).ToString
                     TxtLeadGK.Text = dr.Item(14).ToString
                     TxtAMGK.Text = dr.Item(15).ToString
                     TxtAnalyst.Text = dr.Item(16).ToString
@@ -104,7 +87,7 @@ Public Class MainForm
                     RtbQA.Text = dr.Item(39).ToString
                     RtbToDo.Text = dr.Item(40).ToString
                     RtbJournal.Text = dr.Item(41).ToString
-                    ChkUpcomingBid.Checked = dr.Item(42)
+                    ChkUpcomingBid.Checked = dr.Item(42).ToString ' changed all chkboxes to .tostring
                 End While
             Catch ex As Exception
                 MessageBox.Show(ex.Message & ", ListView function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -170,15 +153,66 @@ Public Class MainForm
         End Try
 
         CountActiveBids()
+        CountUpcoming()
+        CountPendingAward()
+        CountWon()
+        CountLost()
     End Sub
 
-    Private Sub CountActiveBids()
-        LblActive.Text = String.Empty
+    Private Sub CountLost()
         OpenCon()
         Try
-            query = "SELECT Count(BidActive) from rfq where BidActive <> 0"
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'LOST'"
+            cmd = New SQLiteCommand(query, con)
+            LblLost.Text = cmd.ExecuteScalar.ToString & " LOST"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub CountWon()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'WON'"
+            cmd = New SQLiteCommand(query, con)
+            LblWon.Text = cmd.ExecuteScalar.ToString & " WON"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    Private Sub CountPendingAward()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Pending Award'"
+            cmd = New SQLiteCommand(query, con)
+            LblPendingAward.Text = cmd.ExecuteScalar.ToString & " PENDING AWARD"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub CountActiveBids()
+        'LblActive.Text = String.Empty
+        OpenCon()
+        Try
+            query = "SELECT COUNT(BidActive) from rfq where BidActive = 1"
             cmd = New SQLiteCommand(query, con)
             LblActive.Text = cmd.ExecuteScalar.ToString & " ACTIVE"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub CountUpcoming()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(Upcoming) from rfq where Upcoming = 1"
+            cmd = New SQLiteCommand(query, con)
+            LblUpcoming.Text = cmd.ExecuteScalar.ToString & " UPCOMING"
             con.Close()
         Catch ex As Exception
             MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -231,8 +265,8 @@ Public Class MainForm
                 .Parameters.AddWithValue("@NoOfRounds", TxtNoOfRounds.Text.Trim)
                 .Parameters.AddWithValue("@Status", TxtStatus.Text.Trim)
                 .Parameters.AddWithValue("@PercentComplete", TxtPercentComplete.Text.Trim)
-                .Parameters.AddWithValue("@AwardStatus", TxtAwardStatus.Text.Trim)
-                .Parameters.AddWithValue("@LeadRegion", TxtLeadRegion.Text.Trim)
+                .Parameters.AddWithValue("@AwardStatus", CboAwardStatus.Text.Trim)
+                .Parameters.AddWithValue("@LeadRegion", CboLeadRegion.Text.Trim)
                 .Parameters.AddWithValue("@LeadGK", TxtLeadGK.Text.Trim)
                 .Parameters.AddWithValue("@AMGK", TxtAMGK.Text.Trim)
                 .Parameters.AddWithValue("@Analyst", TxtAnalyst.Text.Trim)
@@ -303,8 +337,8 @@ Public Class MainForm
                 .Parameters.AddWithValue("@NoOfRounds", TxtNoOfRounds.Text.Trim)
                 .Parameters.AddWithValue("@Status", TxtStatus.Text.Trim)
                 .Parameters.AddWithValue("@PercentComplete", TxtPercentComplete.Text.Trim)
-                .Parameters.AddWithValue("@AwardStatus", TxtAwardStatus.Text.Trim)
-                .Parameters.AddWithValue("@LeadRegion", TxtLeadRegion.Text.Trim)
+                .Parameters.AddWithValue("@AwardStatus", CboAwardStatus.Text.Trim)
+                .Parameters.AddWithValue("@LeadRegion", CboLeadRegion.Text.Trim)
                 .Parameters.AddWithValue("@LeadGK", TxtLeadGK.Text.Trim)
                 .Parameters.AddWithValue("@AMGK", TxtAMGK.Text.Trim)
                 .Parameters.AddWithValue("@Analyst", TxtAnalyst.Text.Trim)
@@ -489,8 +523,8 @@ Public Class MainForm
                 .Parameters.AddWithValue("@NoOfRounds", TxtNoOfRounds.Text.Trim)
                 .Parameters.AddWithValue("@Status", TxtStatus.Text.Trim)
                 .Parameters.AddWithValue("@PercentComplete", TxtPercentComplete.Text.Trim)
-                .Parameters.AddWithValue("@AwardStatus", TxtAwardStatus.Text.Trim)
-                .Parameters.AddWithValue("@LeadRegion", TxtLeadRegion.Text.Trim)
+                .Parameters.AddWithValue("@AwardStatus", CboAwardStatus.Text.Trim)
+                .Parameters.AddWithValue("@LeadRegion", CboLeadRegion.Text.Trim)
                 .Parameters.AddWithValue("@LeadGK", TxtLeadGK.Text.Trim)
                 .Parameters.AddWithValue("@AMGK", TxtAMGK.Text.Trim)
                 .Parameters.AddWithValue("@Analyst", TxtAnalyst.Text.Trim)
@@ -586,6 +620,4 @@ Public Class MainForm
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         LblTime.Text = TimeOfDay.ToLongTimeString
     End Sub
-
-
 End Class

@@ -84,7 +84,6 @@ Partial Class MainForm
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TxtLeadGK = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.TxtLeadRegion = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TxtNoOfRounds = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -98,7 +97,6 @@ Partial Class MainForm
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TxtBidID = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TxtAwardStatus = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TxtStatus = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -169,6 +167,8 @@ Partial Class MainForm
         Me.SaveAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CboAwardStatus = New System.Windows.Forms.ComboBox()
+        Me.CboLeadRegion = New System.Windows.Forms.ComboBox()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.GbxBidList.SuspendLayout()
@@ -492,6 +492,7 @@ Partial Class MainForm
         '
         'GbxBidInfo
         '
+        Me.GbxBidInfo.Controls.Add(Me.CboLeadRegion)
         Me.GbxBidInfo.Controls.Add(Me.ChkUpcomingBid)
         Me.GbxBidInfo.Controls.Add(Me.ChkUSBid)
         Me.GbxBidInfo.Controls.Add(Me.LblID)
@@ -517,7 +518,6 @@ Partial Class MainForm
         Me.GbxBidInfo.Controls.Add(Me.Label13)
         Me.GbxBidInfo.Controls.Add(Me.TxtLeadGK)
         Me.GbxBidInfo.Controls.Add(Me.Label12)
-        Me.GbxBidInfo.Controls.Add(Me.TxtLeadRegion)
         Me.GbxBidInfo.Controls.Add(Me.Label11)
         Me.GbxBidInfo.Controls.Add(Me.TxtNoOfRounds)
         Me.GbxBidInfo.Controls.Add(Me.Label8)
@@ -751,13 +751,6 @@ Partial Class MainForm
         Me.Label12.TabIndex = 20
         Me.Label12.Text = "Lead GK"
         '
-        'TxtLeadRegion
-        '
-        Me.TxtLeadRegion.Location = New System.Drawing.Point(111, 253)
-        Me.TxtLeadRegion.Name = "TxtLeadRegion"
-        Me.TxtLeadRegion.Size = New System.Drawing.Size(195, 20)
-        Me.TxtLeadRegion.TabIndex = 19
-        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -862,13 +855,6 @@ Partial Class MainForm
         Me.Label3.Size = New System.Drawing.Size(36, 13)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Bid ID"
-        '
-        'TxtAwardStatus
-        '
-        Me.TxtAwardStatus.Location = New System.Drawing.Point(95, 70)
-        Me.TxtAwardStatus.Name = "TxtAwardStatus"
-        Me.TxtAwardStatus.Size = New System.Drawing.Size(137, 20)
-        Me.TxtAwardStatus.TabIndex = 17
         '
         'Label10
         '
@@ -1301,6 +1287,7 @@ Partial Class MainForm
         '
         'GbxStatus
         '
+        Me.GbxStatus.Controls.Add(Me.CboAwardStatus)
         Me.GbxStatus.Controls.Add(Me.RadRed)
         Me.GbxStatus.Controls.Add(Me.RadYellow)
         Me.GbxStatus.Controls.Add(Me.RadGreen)
@@ -1310,7 +1297,6 @@ Partial Class MainForm
         Me.GbxStatus.Controls.Add(Me.Label9)
         Me.GbxStatus.Controls.Add(Me.Label32)
         Me.GbxStatus.Controls.Add(Me.TxtPercentComplete)
-        Me.GbxStatus.Controls.Add(Me.TxtAwardStatus)
         Me.GbxStatus.Controls.Add(Me.Label10)
         Me.GbxStatus.Location = New System.Drawing.Point(338, 124)
         Me.GbxStatus.Name = "GbxStatus"
@@ -1503,6 +1489,29 @@ Partial Class MainForm
         Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExportToExcelToolStripMenuItem.Text = "Export to Excel"
         '
+        'CboAwardStatus
+        '
+        Me.CboAwardStatus.AutoCompleteCustomSource.AddRange(New String() {"Pending Award", "Won", "Lost", "On Hold", "Stopped by DHL", "RFQ Avoidance", "Rate Extension", "Adder", "HFB"})
+        Me.CboAwardStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.CboAwardStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CboAwardStatus.FormattingEnabled = True
+        Me.CboAwardStatus.IntegralHeight = False
+        Me.CboAwardStatus.Items.AddRange(New Object() {"Pending Award", "Won", "Lost", "On Hold", "Stopped by DHL", "RFQ Avoidance", "Rate Extension", "Adder", "HFB"})
+        Me.CboAwardStatus.Location = New System.Drawing.Point(95, 70)
+        Me.CboAwardStatus.Name = "CboAwardStatus"
+        Me.CboAwardStatus.Size = New System.Drawing.Size(137, 21)
+        Me.CboAwardStatus.TabIndex = 86
+        '
+        'CboLeadRegion
+        '
+        Me.CboLeadRegion.AutoCompleteCustomSource.AddRange(New String() {"AMER", "EMEA", "APAC", "GAP"})
+        Me.CboLeadRegion.FormattingEnabled = True
+        Me.CboLeadRegion.Items.AddRange(New Object() {"AMER", "EMEA", "APAC", "GAP"})
+        Me.CboLeadRegion.Location = New System.Drawing.Point(111, 253)
+        Me.CboLeadRegion.Name = "CboLeadRegion"
+        Me.CboLeadRegion.Size = New System.Drawing.Size(194, 21)
+        Me.CboLeadRegion.TabIndex = 71
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1587,9 +1596,7 @@ Partial Class MainForm
     Friend WithEvents Label13 As Label
     Friend WithEvents TxtLeadGK As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents TxtLeadRegion As TextBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents TxtAwardStatus As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents TxtStatus As TextBox
     Friend WithEvents Label9 As Label
@@ -1703,4 +1710,6 @@ Partial Class MainForm
     Friend WithEvents BackUpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteResetToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportToExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CboAwardStatus As ComboBox
+    Friend WithEvents CboLeadRegion As ComboBox
 End Class
