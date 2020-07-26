@@ -59,9 +59,9 @@ Public Class MainForm
                     TxtPercentComplete.Text = dr.Item(11).ToString
                     CboAwardStatus.Text = dr.Item(12).ToString
                     CboLeadRegion.Text = dr.Item(13).ToString
-                    TxtLeadGK.Text = dr.Item(14).ToString
-                    TxtAMGK.Text = dr.Item(15).ToString
-                    TxtAnalyst.Text = dr.Item(16).ToString
+                    CboLeadGK.Text = dr.Item(14).ToString
+                    CboAMGK.Text = dr.Item(15).ToString
+                    CboAnalyst.Text = dr.Item(16).ToString
                     TxtBidAssigned.Text = dr.Item(17).ToString
                     TxtBidReceived.Text = dr.Item(18).ToString
                     TxtPortLaunch.Text = dr.Item(19).ToString
@@ -267,9 +267,9 @@ Public Class MainForm
                 .Parameters.AddWithValue("@PercentComplete", TxtPercentComplete.Text.Trim)
                 .Parameters.AddWithValue("@AwardStatus", CboAwardStatus.Text.Trim)
                 .Parameters.AddWithValue("@LeadRegion", CboLeadRegion.Text.Trim)
-                .Parameters.AddWithValue("@LeadGK", TxtLeadGK.Text.Trim)
-                .Parameters.AddWithValue("@AMGK", TxtAMGK.Text.Trim)
-                .Parameters.AddWithValue("@Analyst", TxtAnalyst.Text.Trim)
+                .Parameters.AddWithValue("@LeadGK", CboLeadGK.Text.Trim)
+                .Parameters.AddWithValue("@AMGK", CboAMGK.Text.Trim)
+                .Parameters.AddWithValue("@Analyst", CboAnalyst.Text.Trim)
                 .Parameters.AddWithValue("@BidAssigned", TxtBidAssigned.Text.Trim)
                 .Parameters.AddWithValue("@BidReceived", TxtBidReceived.Text.Trim)
                 .Parameters.AddWithValue("@PortLaunch", TxtPortLaunch.Text.Trim)
@@ -339,9 +339,9 @@ Public Class MainForm
                 .Parameters.AddWithValue("@PercentComplete", TxtPercentComplete.Text.Trim)
                 .Parameters.AddWithValue("@AwardStatus", CboAwardStatus.Text.Trim)
                 .Parameters.AddWithValue("@LeadRegion", CboLeadRegion.Text.Trim)
-                .Parameters.AddWithValue("@LeadGK", TxtLeadGK.Text.Trim)
-                .Parameters.AddWithValue("@AMGK", TxtAMGK.Text.Trim)
-                .Parameters.AddWithValue("@Analyst", TxtAnalyst.Text.Trim)
+                .Parameters.AddWithValue("@LeadGK", CboLeadGK.Text.Trim)
+                .Parameters.AddWithValue("@AMGK", CboAMGK.Text.Trim)
+                .Parameters.AddWithValue("@Analyst", CboAnalyst.Text.Trim)
                 .Parameters.AddWithValue("@BidAssigned", TxtBidAssigned.Text.Trim)
                 .Parameters.AddWithValue("@BidReceived", TxtBidReceived.Text.Trim)
                 .Parameters.AddWithValue("@PortLaunch", TxtPortLaunch.Text.Trim)
@@ -525,9 +525,9 @@ Public Class MainForm
                 .Parameters.AddWithValue("@PercentComplete", TxtPercentComplete.Text.Trim)
                 .Parameters.AddWithValue("@AwardStatus", CboAwardStatus.Text.Trim)
                 .Parameters.AddWithValue("@LeadRegion", CboLeadRegion.Text.Trim)
-                .Parameters.AddWithValue("@LeadGK", TxtLeadGK.Text.Trim)
-                .Parameters.AddWithValue("@AMGK", TxtAMGK.Text.Trim)
-                .Parameters.AddWithValue("@Analyst", TxtAnalyst.Text.Trim)
+                .Parameters.AddWithValue("@LeadGK", CboLeadGK.Text.Trim)
+                .Parameters.AddWithValue("@AMGK", CboAMGK.Text.Trim)
+                .Parameters.AddWithValue("@Analyst", CboAnalyst.Text.Trim)
                 .Parameters.AddWithValue("@BidAssigned", TxtBidAssigned.Text.Trim)
                 .Parameters.AddWithValue("@BidReceived", TxtBidReceived.Text.Trim)
                 .Parameters.AddWithValue("@PortLaunch", TxtPortLaunch.Text.Trim)
@@ -620,4 +620,5 @@ Public Class MainForm
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         LblTime.Text = TimeOfDay.ToLongTimeString
     End Sub
+
 End Class
