@@ -351,6 +351,7 @@ Partial Class MainForm
         '
         Me.LblLost.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(17, Byte), Integer))
         Me.LblLost.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LblLost.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblLost.ForeColor = System.Drawing.Color.White
         Me.LblLost.Location = New System.Drawing.Point(1725, 11)
         Me.LblLost.Name = "LblLost"
@@ -363,6 +364,7 @@ Partial Class MainForm
         '
         Me.LblWon.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(17, Byte), Integer))
         Me.LblWon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LblWon.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblWon.ForeColor = System.Drawing.Color.White
         Me.LblWon.Location = New System.Drawing.Point(1586, 11)
         Me.LblWon.Name = "LblWon"
@@ -375,10 +377,11 @@ Partial Class MainForm
         '
         Me.LblPendingAward.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(17, Byte), Integer))
         Me.LblPendingAward.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LblPendingAward.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblPendingAward.ForeColor = System.Drawing.Color.White
-        Me.LblPendingAward.Location = New System.Drawing.Point(1447, 11)
+        Me.LblPendingAward.Location = New System.Drawing.Point(1434, 11)
         Me.LblPendingAward.Name = "LblPendingAward"
-        Me.LblPendingAward.Size = New System.Drawing.Size(120, 23)
+        Me.LblPendingAward.Size = New System.Drawing.Size(146, 23)
         Me.LblPendingAward.TabIndex = 108
         Me.LblPendingAward.Text = "# PENDING AWARD"
         Me.LblPendingAward.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -387,6 +390,7 @@ Partial Class MainForm
         '
         Me.LblUpcoming.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(17, Byte), Integer))
         Me.LblUpcoming.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LblUpcoming.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblUpcoming.ForeColor = System.Drawing.Color.White
         Me.LblUpcoming.Location = New System.Drawing.Point(1308, 11)
         Me.LblUpcoming.Name = "LblUpcoming"
@@ -399,6 +403,7 @@ Partial Class MainForm
         '
         Me.LblActive.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(5, Byte), Integer), CType(CType(17, Byte), Integer))
         Me.LblActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LblActive.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblActive.ForeColor = System.Drawing.Color.White
         Me.LblActive.Location = New System.Drawing.Point(1169, 11)
         Me.LblActive.Name = "LblActive"
