@@ -56,6 +56,7 @@ Partial Class MainForm
         Me.Label37 = New System.Windows.Forms.Label()
         Me.LvwBidList = New System.Windows.Forms.ListView()
         Me.GbxBidInfo = New System.Windows.Forms.GroupBox()
+        Me.ChkUpcomingBid = New System.Windows.Forms.CheckBox()
         Me.ChkUSBid = New System.Windows.Forms.CheckBox()
         Me.LblID = New System.Windows.Forms.Label()
         Me.ChkStandardFuel = New System.Windows.Forms.CheckBox()
@@ -151,7 +152,12 @@ Partial Class MainForm
         Me.BtnCommitChanges = New System.Windows.Forms.Button()
         Me.LblTime = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ChkUpcomingBid = New System.Windows.Forms.CheckBox()
+        Me.RadGreen = New System.Windows.Forms.RadioButton()
+        Me.RadYellow = New System.Windows.Forms.RadioButton()
+        Me.RadRed = New System.Windows.Forms.RadioButton()
+        Me.CboFilter = New System.Windows.Forms.ComboBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.BtnLinkOneNote = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.GbxBidList.SuspendLayout()
@@ -282,6 +288,8 @@ Partial Class MainForm
         Me.GbxBidList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GbxBidList.Controls.Add(Me.Label20)
+        Me.GbxBidList.Controls.Add(Me.CboFilter)
         Me.GbxBidList.Controls.Add(Me.LblLost)
         Me.GbxBidList.Controls.Add(Me.LblWon)
         Me.GbxBidList.Controls.Add(Me.LblPendingAward)
@@ -469,8 +477,6 @@ Partial Class MainForm
         Me.GbxBidInfo.Controls.Add(Me.Label12)
         Me.GbxBidInfo.Controls.Add(Me.TxtLeadRegion)
         Me.GbxBidInfo.Controls.Add(Me.Label11)
-        Me.GbxBidInfo.Controls.Add(Me.TxtAwardStatus)
-        Me.GbxBidInfo.Controls.Add(Me.Label10)
         Me.GbxBidInfo.Controls.Add(Me.TxtNoOfRounds)
         Me.GbxBidInfo.Controls.Add(Me.Label8)
         Me.GbxBidInfo.Controls.Add(Me.TxtCO)
@@ -490,10 +496,20 @@ Partial Class MainForm
         Me.GbxBidInfo.TabStop = False
         Me.GbxBidInfo.Text = "Details"
         '
+        'ChkUpcomingBid
+        '
+        Me.ChkUpcomingBid.AutoSize = True
+        Me.ChkUpcomingBid.Location = New System.Drawing.Point(213, 46)
+        Me.ChkUpcomingBid.Name = "ChkUpcomingBid"
+        Me.ChkUpcomingBid.Size = New System.Drawing.Size(92, 17)
+        Me.ChkUpcomingBid.TabIndex = 70
+        Me.ChkUpcomingBid.Text = "Upcoming Bid"
+        Me.ChkUpcomingBid.UseVisualStyleBackColor = True
+        '
         'ChkUSBid
         '
         Me.ChkUSBid.AutoSize = True
-        Me.ChkUSBid.Location = New System.Drawing.Point(163, 47)
+        Me.ChkUSBid.Location = New System.Drawing.Point(148, 46)
         Me.ChkUSBid.Name = "ChkUSBid"
         Me.ChkUSBid.Size = New System.Drawing.Size(59, 17)
         Me.ChkUSBid.TabIndex = 1
@@ -504,7 +520,7 @@ Partial Class MainForm
         'LblID
         '
         Me.LblID.AutoSize = True
-        Me.LblID.Location = New System.Drawing.Point(108, 48)
+        Me.LblID.Location = New System.Drawing.Point(7, 48)
         Me.LblID.Name = "LblID"
         Me.LblID.Size = New System.Drawing.Size(10, 13)
         Me.LblID.TabIndex = 69
@@ -525,7 +541,7 @@ Partial Class MainForm
         Me.ChkBidActive.AutoSize = True
         Me.ChkBidActive.Checked = True
         Me.ChkBidActive.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkBidActive.Location = New System.Drawing.Point(244, 47)
+        Me.ChkBidActive.Location = New System.Drawing.Point(86, 46)
         Me.ChkBidActive.Name = "ChkBidActive"
         Me.ChkBidActive.Size = New System.Drawing.Size(56, 17)
         Me.ChkBidActive.TabIndex = 2
@@ -647,7 +663,7 @@ Partial Class MainForm
         '
         'TxtAnalyst
         '
-        Me.TxtAnalyst.Location = New System.Drawing.Point(111, 356)
+        Me.TxtAnalyst.Location = New System.Drawing.Point(111, 331)
         Me.TxtAnalyst.Name = "TxtAnalyst"
         Me.TxtAnalyst.Size = New System.Drawing.Size(195, 20)
         Me.TxtAnalyst.TabIndex = 25
@@ -655,7 +671,7 @@ Partial Class MainForm
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(7, 359)
+        Me.Label14.Location = New System.Drawing.Point(7, 334)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(41, 13)
         Me.Label14.TabIndex = 24
@@ -663,7 +679,7 @@ Partial Class MainForm
         '
         'TxtAMGK
         '
-        Me.TxtAMGK.Location = New System.Drawing.Point(111, 330)
+        Me.TxtAMGK.Location = New System.Drawing.Point(111, 305)
         Me.TxtAMGK.Name = "TxtAMGK"
         Me.TxtAMGK.Size = New System.Drawing.Size(195, 20)
         Me.TxtAMGK.TabIndex = 23
@@ -671,7 +687,7 @@ Partial Class MainForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(7, 333)
+        Me.Label13.Location = New System.Drawing.Point(7, 308)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(41, 13)
         Me.Label13.TabIndex = 22
@@ -679,7 +695,7 @@ Partial Class MainForm
         '
         'TxtLeadGK
         '
-        Me.TxtLeadGK.Location = New System.Drawing.Point(111, 304)
+        Me.TxtLeadGK.Location = New System.Drawing.Point(111, 279)
         Me.TxtLeadGK.Name = "TxtLeadGK"
         Me.TxtLeadGK.Size = New System.Drawing.Size(195, 20)
         Me.TxtLeadGK.TabIndex = 21
@@ -687,7 +703,7 @@ Partial Class MainForm
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(7, 307)
+        Me.Label12.Location = New System.Drawing.Point(7, 282)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(49, 13)
         Me.Label12.TabIndex = 20
@@ -695,7 +711,7 @@ Partial Class MainForm
         '
         'TxtLeadRegion
         '
-        Me.TxtLeadRegion.Location = New System.Drawing.Point(111, 278)
+        Me.TxtLeadRegion.Location = New System.Drawing.Point(111, 253)
         Me.TxtLeadRegion.Name = "TxtLeadRegion"
         Me.TxtLeadRegion.Size = New System.Drawing.Size(195, 20)
         Me.TxtLeadRegion.TabIndex = 19
@@ -703,7 +719,7 @@ Partial Class MainForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(7, 281)
+        Me.Label11.Location = New System.Drawing.Point(7, 256)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(68, 13)
         Me.Label11.TabIndex = 18
@@ -711,15 +727,15 @@ Partial Class MainForm
         '
         'TxtAwardStatus
         '
-        Me.TxtAwardStatus.Location = New System.Drawing.Point(111, 252)
+        Me.TxtAwardStatus.Location = New System.Drawing.Point(95, 70)
         Me.TxtAwardStatus.Name = "TxtAwardStatus"
-        Me.TxtAwardStatus.Size = New System.Drawing.Size(195, 20)
+        Me.TxtAwardStatus.Size = New System.Drawing.Size(137, 20)
         Me.TxtAwardStatus.TabIndex = 17
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(7, 255)
+        Me.Label10.Location = New System.Drawing.Point(6, 73)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(70, 13)
         Me.Label10.TabIndex = 16
@@ -867,16 +883,16 @@ Partial Class MainForm
         Me.GbxRounds.Controls.Add(Me.Label21)
         Me.GbxRounds.Controls.Add(Me.TxtR1_Launch)
         Me.GbxRounds.Controls.Add(Me.Label1)
-        Me.GbxRounds.Location = New System.Drawing.Point(338, 234)
+        Me.GbxRounds.Location = New System.Drawing.Point(338, 249)
         Me.GbxRounds.Name = "GbxRounds"
-        Me.GbxRounds.Size = New System.Drawing.Size(306, 434)
+        Me.GbxRounds.Size = New System.Drawing.Size(306, 419)
         Me.GbxRounds.TabIndex = 5
         Me.GbxRounds.TabStop = False
         Me.GbxRounds.Text = "Rounds"
         '
         'TxtR3_Launch
         '
-        Me.TxtR3_Launch.Location = New System.Drawing.Point(95, 331)
+        Me.TxtR3_Launch.Location = New System.Drawing.Point(95, 308)
         Me.TxtR3_Launch.Name = "TxtR3_Launch"
         Me.TxtR3_Launch.Size = New System.Drawing.Size(195, 20)
         Me.TxtR3_Launch.TabIndex = 56
@@ -884,7 +900,7 @@ Partial Class MainForm
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(5, 334)
+        Me.Label19.Location = New System.Drawing.Point(5, 311)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(60, 13)
         Me.Label19.TabIndex = 68
@@ -892,7 +908,7 @@ Partial Class MainForm
         '
         'TxtR2_Launch
         '
-        Me.TxtR2_Launch.Location = New System.Drawing.Point(95, 175)
+        Me.TxtR2_Launch.Location = New System.Drawing.Point(95, 166)
         Me.TxtR2_Launch.Name = "TxtR2_Launch"
         Me.TxtR2_Launch.Size = New System.Drawing.Size(195, 20)
         Me.TxtR2_Launch.TabIndex = 48
@@ -900,7 +916,7 @@ Partial Class MainForm
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(5, 178)
+        Me.Label36.Location = New System.Drawing.Point(5, 169)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(60, 13)
         Me.Label36.TabIndex = 66
@@ -908,7 +924,7 @@ Partial Class MainForm
         '
         'TxtR3_Submitted
         '
-        Me.TxtR3_Submitted.Location = New System.Drawing.Point(95, 409)
+        Me.TxtR3_Submitted.Location = New System.Drawing.Point(95, 386)
         Me.TxtR3_Submitted.Name = "TxtR3_Submitted"
         Me.TxtR3_Submitted.Size = New System.Drawing.Size(195, 20)
         Me.TxtR3_Submitted.TabIndex = 61
@@ -916,7 +932,7 @@ Partial Class MainForm
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(5, 412)
+        Me.Label28.Location = New System.Drawing.Point(5, 389)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(71, 13)
         Me.Label28.TabIndex = 60
@@ -924,7 +940,7 @@ Partial Class MainForm
         '
         'TxtR3_CustomerDue
         '
-        Me.TxtR3_CustomerDue.Location = New System.Drawing.Point(95, 383)
+        Me.TxtR3_CustomerDue.Location = New System.Drawing.Point(95, 360)
         Me.TxtR3_CustomerDue.Name = "TxtR3_CustomerDue"
         Me.TxtR3_CustomerDue.Size = New System.Drawing.Size(195, 20)
         Me.TxtR3_CustomerDue.TabIndex = 59
@@ -932,7 +948,7 @@ Partial Class MainForm
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(5, 386)
+        Me.Label29.Location = New System.Drawing.Point(5, 363)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(91, 13)
         Me.Label29.TabIndex = 58
@@ -940,7 +956,7 @@ Partial Class MainForm
         '
         'TxtR3_InternalDue
         '
-        Me.TxtR3_InternalDue.Location = New System.Drawing.Point(95, 357)
+        Me.TxtR3_InternalDue.Location = New System.Drawing.Point(95, 334)
         Me.TxtR3_InternalDue.Name = "TxtR3_InternalDue"
         Me.TxtR3_InternalDue.Size = New System.Drawing.Size(195, 20)
         Me.TxtR3_InternalDue.TabIndex = 57
@@ -948,7 +964,7 @@ Partial Class MainForm
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(5, 360)
+        Me.Label30.Location = New System.Drawing.Point(5, 337)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(82, 13)
         Me.Label30.TabIndex = 56
@@ -956,7 +972,7 @@ Partial Class MainForm
         '
         'TxtR3_Received
         '
-        Me.TxtR3_Received.Location = New System.Drawing.Point(95, 305)
+        Me.TxtR3_Received.Location = New System.Drawing.Point(95, 282)
         Me.TxtR3_Received.Name = "TxtR3_Received"
         Me.TxtR3_Received.Size = New System.Drawing.Size(195, 20)
         Me.TxtR3_Received.TabIndex = 55
@@ -964,7 +980,7 @@ Partial Class MainForm
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(5, 308)
+        Me.Label31.Location = New System.Drawing.Point(5, 285)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(70, 13)
         Me.Label31.TabIndex = 54
@@ -972,7 +988,7 @@ Partial Class MainForm
         '
         'TxtR2_Submitted
         '
-        Me.TxtR2_Submitted.Location = New System.Drawing.Point(95, 253)
+        Me.TxtR2_Submitted.Location = New System.Drawing.Point(95, 244)
         Me.TxtR2_Submitted.Name = "TxtR2_Submitted"
         Me.TxtR2_Submitted.Size = New System.Drawing.Size(195, 20)
         Me.TxtR2_Submitted.TabIndex = 53
@@ -980,7 +996,7 @@ Partial Class MainForm
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(5, 256)
+        Me.Label24.Location = New System.Drawing.Point(5, 247)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(71, 13)
         Me.Label24.TabIndex = 52
@@ -988,7 +1004,7 @@ Partial Class MainForm
         '
         'TxtR2_CustomerDue
         '
-        Me.TxtR2_CustomerDue.Location = New System.Drawing.Point(95, 227)
+        Me.TxtR2_CustomerDue.Location = New System.Drawing.Point(95, 218)
         Me.TxtR2_CustomerDue.Name = "TxtR2_CustomerDue"
         Me.TxtR2_CustomerDue.Size = New System.Drawing.Size(195, 20)
         Me.TxtR2_CustomerDue.TabIndex = 51
@@ -996,7 +1012,7 @@ Partial Class MainForm
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(5, 230)
+        Me.Label25.Location = New System.Drawing.Point(5, 221)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(91, 13)
         Me.Label25.TabIndex = 50
@@ -1004,7 +1020,7 @@ Partial Class MainForm
         '
         'TxtR2_InternalDue
         '
-        Me.TxtR2_InternalDue.Location = New System.Drawing.Point(95, 201)
+        Me.TxtR2_InternalDue.Location = New System.Drawing.Point(95, 192)
         Me.TxtR2_InternalDue.Name = "TxtR2_InternalDue"
         Me.TxtR2_InternalDue.Size = New System.Drawing.Size(195, 20)
         Me.TxtR2_InternalDue.TabIndex = 49
@@ -1012,7 +1028,7 @@ Partial Class MainForm
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(5, 204)
+        Me.Label26.Location = New System.Drawing.Point(5, 195)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(82, 13)
         Me.Label26.TabIndex = 48
@@ -1020,7 +1036,7 @@ Partial Class MainForm
         '
         'TxtR2_Received
         '
-        Me.TxtR2_Received.Location = New System.Drawing.Point(95, 149)
+        Me.TxtR2_Received.Location = New System.Drawing.Point(95, 140)
         Me.TxtR2_Received.Name = "TxtR2_Received"
         Me.TxtR2_Received.Size = New System.Drawing.Size(195, 20)
         Me.TxtR2_Received.TabIndex = 47
@@ -1028,7 +1044,7 @@ Partial Class MainForm
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(5, 152)
+        Me.Label27.Location = New System.Drawing.Point(5, 143)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(70, 13)
         Me.Label27.TabIndex = 46
@@ -1036,7 +1052,7 @@ Partial Class MainForm
         '
         'TxtR1_Submitted
         '
-        Me.TxtR1_Submitted.Location = New System.Drawing.Point(95, 97)
+        Me.TxtR1_Submitted.Location = New System.Drawing.Point(95, 101)
         Me.TxtR1_Submitted.Name = "TxtR1_Submitted"
         Me.TxtR1_Submitted.Size = New System.Drawing.Size(195, 20)
         Me.TxtR1_Submitted.TabIndex = 45
@@ -1044,7 +1060,7 @@ Partial Class MainForm
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(5, 100)
+        Me.Label23.Location = New System.Drawing.Point(5, 104)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(71, 13)
         Me.Label23.TabIndex = 44
@@ -1052,7 +1068,7 @@ Partial Class MainForm
         '
         'TxtR1_CustomerDue
         '
-        Me.TxtR1_CustomerDue.Location = New System.Drawing.Point(95, 71)
+        Me.TxtR1_CustomerDue.Location = New System.Drawing.Point(95, 75)
         Me.TxtR1_CustomerDue.Name = "TxtR1_CustomerDue"
         Me.TxtR1_CustomerDue.Size = New System.Drawing.Size(195, 20)
         Me.TxtR1_CustomerDue.TabIndex = 43
@@ -1060,7 +1076,7 @@ Partial Class MainForm
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(5, 74)
+        Me.Label22.Location = New System.Drawing.Point(5, 78)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(91, 13)
         Me.Label22.TabIndex = 42
@@ -1068,7 +1084,7 @@ Partial Class MainForm
         '
         'TxtR1_InternalDue
         '
-        Me.TxtR1_InternalDue.Location = New System.Drawing.Point(95, 45)
+        Me.TxtR1_InternalDue.Location = New System.Drawing.Point(95, 49)
         Me.TxtR1_InternalDue.Name = "TxtR1_InternalDue"
         Me.TxtR1_InternalDue.Size = New System.Drawing.Size(195, 20)
         Me.TxtR1_InternalDue.TabIndex = 42
@@ -1076,7 +1092,7 @@ Partial Class MainForm
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(5, 48)
+        Me.Label21.Location = New System.Drawing.Point(5, 52)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(82, 13)
         Me.Label21.TabIndex = 40
@@ -1084,7 +1100,7 @@ Partial Class MainForm
         '
         'TxtR1_Launch
         '
-        Me.TxtR1_Launch.Location = New System.Drawing.Point(95, 19)
+        Me.TxtR1_Launch.Location = New System.Drawing.Point(95, 23)
         Me.TxtR1_Launch.Name = "TxtR1_Launch"
         Me.TxtR1_Launch.Size = New System.Drawing.Size(195, 20)
         Me.TxtR1_Launch.TabIndex = 41
@@ -1092,7 +1108,7 @@ Partial Class MainForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(5, 22)
+        Me.Label1.Location = New System.Drawing.Point(5, 26)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(60, 13)
         Me.Label1.TabIndex = 0
@@ -1102,7 +1118,7 @@ Partial Class MainForm
         '
         Me.TxtPercentComplete.Location = New System.Drawing.Point(95, 44)
         Me.TxtPercentComplete.Name = "TxtPercentComplete"
-        Me.TxtPercentComplete.Size = New System.Drawing.Size(55, 20)
+        Me.TxtPercentComplete.Size = New System.Drawing.Size(42, 20)
         Me.TxtPercentComplete.TabIndex = 40
         '
         'Label32
@@ -1243,15 +1259,20 @@ Partial Class MainForm
         '
         'GbxStatus
         '
+        Me.GbxStatus.Controls.Add(Me.RadRed)
+        Me.GbxStatus.Controls.Add(Me.RadYellow)
+        Me.GbxStatus.Controls.Add(Me.RadGreen)
         Me.GbxStatus.Controls.Add(Me.LblTimestamp)
         Me.GbxStatus.Controls.Add(Me.Label2)
         Me.GbxStatus.Controls.Add(Me.TxtStatus)
         Me.GbxStatus.Controls.Add(Me.Label9)
         Me.GbxStatus.Controls.Add(Me.Label32)
         Me.GbxStatus.Controls.Add(Me.TxtPercentComplete)
+        Me.GbxStatus.Controls.Add(Me.TxtAwardStatus)
+        Me.GbxStatus.Controls.Add(Me.Label10)
         Me.GbxStatus.Location = New System.Drawing.Point(338, 124)
         Me.GbxStatus.Name = "GbxStatus"
-        Me.GbxStatus.Size = New System.Drawing.Size(306, 104)
+        Me.GbxStatus.Size = New System.Drawing.Size(306, 119)
         Me.GbxStatus.TabIndex = 4
         Me.GbxStatus.TabStop = False
         Me.GbxStatus.Text = "Status"
@@ -1259,7 +1280,7 @@ Partial Class MainForm
         'LblTimestamp
         '
         Me.LblTimestamp.AutoSize = True
-        Me.LblTimestamp.Location = New System.Drawing.Point(92, 73)
+        Me.LblTimestamp.Location = New System.Drawing.Point(93, 96)
         Me.LblTimestamp.Name = "LblTimestamp"
         Me.LblTimestamp.Size = New System.Drawing.Size(10, 13)
         Me.LblTimestamp.TabIndex = 65
@@ -1268,7 +1289,7 @@ Partial Class MainForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(5, 73)
+        Me.Label2.Location = New System.Drawing.Point(5, 96)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(70, 13)
         Me.Label2.TabIndex = 64
@@ -1327,15 +1348,72 @@ Partial Class MainForm
         '
         Me.Timer1.Enabled = True
         '
-        'ChkUpcomingBid
+        'RadGreen
         '
-        Me.ChkUpcomingBid.AutoSize = True
-        Me.ChkUpcomingBid.Location = New System.Drawing.Point(163, 16)
-        Me.ChkUpcomingBid.Name = "ChkUpcomingBid"
-        Me.ChkUpcomingBid.Size = New System.Drawing.Size(92, 17)
-        Me.ChkUpcomingBid.TabIndex = 70
-        Me.ChkUpcomingBid.Text = "Upcoming Bid"
-        Me.ChkUpcomingBid.UseVisualStyleBackColor = True
+        Me.RadGreen.AutoSize = True
+        Me.RadGreen.BackColor = System.Drawing.Color.Green
+        Me.RadGreen.ForeColor = System.Drawing.Color.Green
+        Me.RadGreen.Location = New System.Drawing.Point(257, 49)
+        Me.RadGreen.Name = "RadGreen"
+        Me.RadGreen.Size = New System.Drawing.Size(33, 17)
+        Me.RadGreen.TabIndex = 69
+        Me.RadGreen.TabStop = True
+        Me.RadGreen.Text = "G"
+        Me.RadGreen.UseVisualStyleBackColor = False
+        '
+        'RadYellow
+        '
+        Me.RadYellow.AutoSize = True
+        Me.RadYellow.BackColor = System.Drawing.Color.Yellow
+        Me.RadYellow.ForeColor = System.Drawing.Color.Yellow
+        Me.RadYellow.Location = New System.Drawing.Point(257, 66)
+        Me.RadYellow.Name = "RadYellow"
+        Me.RadYellow.Size = New System.Drawing.Size(32, 17)
+        Me.RadYellow.TabIndex = 70
+        Me.RadYellow.TabStop = True
+        Me.RadYellow.Text = "Y"
+        Me.RadYellow.UseVisualStyleBackColor = False
+        '
+        'RadRed
+        '
+        Me.RadRed.AutoSize = True
+        Me.RadRed.BackColor = System.Drawing.Color.Red
+        Me.RadRed.ForeColor = System.Drawing.Color.Red
+        Me.RadRed.Location = New System.Drawing.Point(257, 83)
+        Me.RadRed.Name = "RadRed"
+        Me.RadRed.Size = New System.Drawing.Size(33, 17)
+        Me.RadRed.TabIndex = 71
+        Me.RadRed.TabStop = True
+        Me.RadRed.Text = "R"
+        Me.RadRed.UseVisualStyleBackColor = False
+        '
+        'CboFilter
+        '
+        Me.CboFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CboFilter.FormattingEnabled = True
+        Me.CboFilter.Items.AddRange(New Object() {"Active", "Inactive", "Upcoming", "All", "Red", "Green", "Yellow"})
+        Me.CboFilter.Location = New System.Drawing.Point(62, 13)
+        Me.CboFilter.Name = "CboFilter"
+        Me.CboFilter.Size = New System.Drawing.Size(103, 21)
+        Me.CboFilter.TabIndex = 111
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(9, 16)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(32, 13)
+        Me.Label20.TabIndex = 112
+        Me.Label20.Text = "Filter:"
+        '
+        'BtnLinkOneNote
+        '
+        Me.BtnLinkOneNote.Location = New System.Drawing.Point(856, 86)
+        Me.BtnLinkOneNote.Name = "BtnLinkOneNote"
+        Me.BtnLinkOneNote.Size = New System.Drawing.Size(129, 23)
+        Me.BtnLinkOneNote.TabIndex = 84
+        Me.BtnLinkOneNote.Text = "Link/Open OneNote"
+        Me.BtnLinkOneNote.UseVisualStyleBackColor = True
         '
         'MainForm
         '
@@ -1343,6 +1421,7 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1884, 1015)
+        Me.Controls.Add(Me.BtnLinkOneNote)
         Me.Controls.Add(Me.LblTime)
         Me.Controls.Add(Me.BtnCommitChanges)
         Me.Controls.Add(Me.BtnCreateFolderCustomerName)
@@ -1518,4 +1597,10 @@ Partial Class MainForm
     Friend WithEvents LblUpcoming As Label
     Friend WithEvents LblActive As Label
     Friend WithEvents ChkUpcomingBid As CheckBox
+    Friend WithEvents RadRed As RadioButton
+    Friend WithEvents RadYellow As RadioButton
+    Friend WithEvents RadGreen As RadioButton
+    Friend WithEvents Label20 As Label
+    Friend WithEvents CboFilter As ComboBox
+    Friend WithEvents BtnLinkOneNote As Button
 End Class
