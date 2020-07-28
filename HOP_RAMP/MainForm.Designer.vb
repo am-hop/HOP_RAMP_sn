@@ -156,9 +156,6 @@ Partial Class MainForm
         Me.PicRAMPLogo = New System.Windows.Forms.PictureBox()
         Me.GbxStatus = New System.Windows.Forms.GroupBox()
         Me.CboAwardStatus = New System.Windows.Forms.ComboBox()
-        Me.RadRed = New System.Windows.Forms.RadioButton()
-        Me.RadYellow = New System.Windows.Forms.RadioButton()
-        Me.RadGreen = New System.Windows.Forms.RadioButton()
         Me.LblTimestamp = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.LblCustomerHeader = New System.Windows.Forms.Label()
@@ -171,6 +168,7 @@ Partial Class MainForm
         Me.BtnExportNotes = New System.Windows.Forms.Button()
         Me.LblFolderPath = New System.Windows.Forms.Label()
         Me.LblOneNoteFolderPath = New System.Windows.Forms.Label()
+        Me.BtnApplyFilter = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.GbxBidList.SuspendLayout()
@@ -364,6 +362,7 @@ Partial Class MainForm
         Me.GbxBidList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GbxBidList.Controls.Add(Me.BtnApplyFilter)
         Me.GbxBidList.Controls.Add(Me.Label20)
         Me.GbxBidList.Controls.Add(Me.CboFilter)
         Me.GbxBidList.Controls.Add(Me.LblLost)
@@ -389,7 +388,7 @@ Partial Class MainForm
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(9, 16)
+        Me.Label20.Location = New System.Drawing.Point(24, 16)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(32, 13)
         Me.Label20.TabIndex = 112
@@ -397,6 +396,8 @@ Partial Class MainForm
         '
         'CboFilter
         '
+        Me.CboFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CboFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CboFilter.FormattingEnabled = True
         Me.CboFilter.Items.AddRange(New Object() {"Active", "Inactive", "Upcoming", "All", "Red", "Green", "Yellow"})
@@ -404,6 +405,7 @@ Partial Class MainForm
         Me.CboFilter.Name = "CboFilter"
         Me.CboFilter.Size = New System.Drawing.Size(103, 21)
         Me.CboFilter.TabIndex = 0
+        Me.CboFilter.Text = "Active"
         '
         'LblLost
         '
@@ -472,7 +474,7 @@ Partial Class MainForm
         '
         'BtnReset
         '
-        Me.BtnReset.Location = New System.Drawing.Point(719, 10)
+        Me.BtnReset.Location = New System.Drawing.Point(719, 11)
         Me.BtnReset.Name = "BtnReset"
         Me.BtnReset.Size = New System.Drawing.Size(75, 23)
         Me.BtnReset.TabIndex = 5
@@ -482,14 +484,14 @@ Partial Class MainForm
         'LblCount
         '
         Me.LblCount.AutoSize = True
-        Me.LblCount.Location = New System.Drawing.Point(820, 15)
+        Me.LblCount.Location = New System.Drawing.Point(820, 14)
         Me.LblCount.Name = "LblCount"
         Me.LblCount.Size = New System.Drawing.Size(0, 13)
         Me.LblCount.TabIndex = 66
         '
         'BtnSearch
         '
-        Me.BtnSearch.Location = New System.Drawing.Point(638, 10)
+        Me.BtnSearch.Location = New System.Drawing.Point(638, 11)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(75, 23)
         Me.BtnSearch.TabIndex = 4
@@ -498,15 +500,15 @@ Partial Class MainForm
         '
         'TxtSearch
         '
-        Me.TxtSearch.Location = New System.Drawing.Point(416, 13)
+        Me.TxtSearch.Location = New System.Drawing.Point(453, 13)
         Me.TxtSearch.Name = "TxtSearch"
-        Me.TxtSearch.Size = New System.Drawing.Size(194, 20)
+        Me.TxtSearch.Size = New System.Drawing.Size(157, 20)
         Me.TxtSearch.TabIndex = 3
         '
         'RadStatus
         '
         Me.RadStatus.AutoSize = True
-        Me.RadStatus.Location = New System.Drawing.Point(353, 14)
+        Me.RadStatus.Location = New System.Drawing.Point(397, 14)
         Me.RadStatus.Name = "RadStatus"
         Me.RadStatus.Size = New System.Drawing.Size(55, 17)
         Me.RadStatus.TabIndex = 2
@@ -517,7 +519,7 @@ Partial Class MainForm
         '
         Me.RadCustomer.AutoSize = True
         Me.RadCustomer.Checked = True
-        Me.RadCustomer.Location = New System.Drawing.Point(264, 14)
+        Me.RadCustomer.Location = New System.Drawing.Point(327, 14)
         Me.RadCustomer.Name = "RadCustomer"
         Me.RadCustomer.Size = New System.Drawing.Size(71, 17)
         Me.RadCustomer.TabIndex = 1
@@ -528,7 +530,7 @@ Partial Class MainForm
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(189, 16)
+        Me.Label37.Location = New System.Drawing.Point(271, 16)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(55, 13)
         Me.Label37.TabIndex = 100
@@ -596,6 +598,8 @@ Partial Class MainForm
         '
         'CboAnalyst
         '
+        Me.CboAnalyst.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CboAnalyst.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAnalyst.FormattingEnabled = True
         Me.CboAnalyst.Location = New System.Drawing.Point(111, 331)
         Me.CboAnalyst.Name = "CboAnalyst"
@@ -604,6 +608,8 @@ Partial Class MainForm
         '
         'CboAMGK
         '
+        Me.CboAMGK.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CboAMGK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAMGK.FormattingEnabled = True
         Me.CboAMGK.Location = New System.Drawing.Point(111, 305)
         Me.CboAMGK.Name = "CboAMGK"
@@ -612,7 +618,10 @@ Partial Class MainForm
         '
         'CboLeadGK
         '
+        Me.CboLeadGK.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CboLeadGK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboLeadGK.FormattingEnabled = True
+        Me.CboLeadGK.Items.AddRange(New Object() {"Anil P.", "Armin G.", "Hendrik B."})
         Me.CboLeadGK.Location = New System.Drawing.Point(111, 279)
         Me.CboLeadGK.Name = "CboLeadGK"
         Me.CboLeadGK.Size = New System.Drawing.Size(194, 21)
@@ -621,6 +630,8 @@ Partial Class MainForm
         'CboLeadRegion
         '
         Me.CboLeadRegion.AutoCompleteCustomSource.AddRange(New String() {"AMER", "EMEA", "APAC", "GAP"})
+        Me.CboLeadRegion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CboLeadRegion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboLeadRegion.FormattingEnabled = True
         Me.CboLeadRegion.Items.AddRange(New Object() {"AMER", "EMEA", "APAC", "GAP"})
         Me.CboLeadRegion.Location = New System.Drawing.Point(111, 253)
@@ -1359,9 +1370,6 @@ Partial Class MainForm
         'GbxStatus
         '
         Me.GbxStatus.Controls.Add(Me.CboAwardStatus)
-        Me.GbxStatus.Controls.Add(Me.RadRed)
-        Me.GbxStatus.Controls.Add(Me.RadYellow)
-        Me.GbxStatus.Controls.Add(Me.RadGreen)
         Me.GbxStatus.Controls.Add(Me.LblTimestamp)
         Me.GbxStatus.Controls.Add(Me.Label2)
         Me.GbxStatus.Controls.Add(Me.TxtStatus)
@@ -1378,8 +1386,7 @@ Partial Class MainForm
         '
         'CboAwardStatus
         '
-        Me.CboAwardStatus.AutoCompleteCustomSource.AddRange(New String() {"Pending Award", "Won", "Lost", "On Hold", "Stopped by DHL", "RFQ Avoidance", "Rate Extension", "Adder", "HFB"})
-        Me.CboAwardStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.CboAwardStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CboAwardStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAwardStatus.FormattingEnabled = True
         Me.CboAwardStatus.IntegralHeight = False
@@ -1388,45 +1395,6 @@ Partial Class MainForm
         Me.CboAwardStatus.Name = "CboAwardStatus"
         Me.CboAwardStatus.Size = New System.Drawing.Size(137, 21)
         Me.CboAwardStatus.TabIndex = 2
-        '
-        'RadRed
-        '
-        Me.RadRed.AutoSize = True
-        Me.RadRed.BackColor = System.Drawing.Color.Red
-        Me.RadRed.ForeColor = System.Drawing.Color.Red
-        Me.RadRed.Location = New System.Drawing.Point(257, 83)
-        Me.RadRed.Name = "RadRed"
-        Me.RadRed.Size = New System.Drawing.Size(33, 17)
-        Me.RadRed.TabIndex = 5
-        Me.RadRed.TabStop = True
-        Me.RadRed.Text = "R"
-        Me.RadRed.UseVisualStyleBackColor = False
-        '
-        'RadYellow
-        '
-        Me.RadYellow.AutoSize = True
-        Me.RadYellow.BackColor = System.Drawing.Color.Yellow
-        Me.RadYellow.ForeColor = System.Drawing.Color.Yellow
-        Me.RadYellow.Location = New System.Drawing.Point(257, 66)
-        Me.RadYellow.Name = "RadYellow"
-        Me.RadYellow.Size = New System.Drawing.Size(32, 17)
-        Me.RadYellow.TabIndex = 4
-        Me.RadYellow.TabStop = True
-        Me.RadYellow.Text = "Y"
-        Me.RadYellow.UseVisualStyleBackColor = False
-        '
-        'RadGreen
-        '
-        Me.RadGreen.AutoSize = True
-        Me.RadGreen.BackColor = System.Drawing.Color.Green
-        Me.RadGreen.ForeColor = System.Drawing.Color.Green
-        Me.RadGreen.Location = New System.Drawing.Point(257, 49)
-        Me.RadGreen.Name = "RadGreen"
-        Me.RadGreen.Size = New System.Drawing.Size(33, 17)
-        Me.RadGreen.TabIndex = 3
-        Me.RadGreen.TabStop = True
-        Me.RadGreen.Text = "G"
-        Me.RadGreen.UseVisualStyleBackColor = False
         '
         'LblTimestamp
         '
@@ -1536,6 +1504,15 @@ Partial Class MainForm
         Me.LblOneNoteFolderPath.Size = New System.Drawing.Size(196, 13)
         Me.LblOneNoteFolderPath.TabIndex = 85
         Me.LblOneNoteFolderPath.Text = "My Documents/OneNote/Customer.one"
+        '
+        'BtnApplyFilter
+        '
+        Me.BtnApplyFilter.Location = New System.Drawing.Point(178, 12)
+        Me.BtnApplyFilter.Name = "BtnApplyFilter"
+        Me.BtnApplyFilter.Size = New System.Drawing.Size(75, 23)
+        Me.BtnApplyFilter.TabIndex = 113
+        Me.BtnApplyFilter.Text = "Apply"
+        Me.BtnApplyFilter.UseVisualStyleBackColor = True
         '
         'MainForm
         '
@@ -1717,9 +1694,6 @@ Partial Class MainForm
     Friend WithEvents LblUpcoming As Label
     Friend WithEvents LblActive As Label
     Friend WithEvents ChkUpcoming As CheckBox
-    Friend WithEvents RadRed As RadioButton
-    Friend WithEvents RadYellow As RadioButton
-    Friend WithEvents RadGreen As RadioButton
     Friend WithEvents Label20 As Label
     Friend WithEvents CboFilter As ComboBox
     Friend WithEvents BtnLinkOneNote As Button
@@ -1741,4 +1715,5 @@ Partial Class MainForm
     Friend WithEvents CboLeadGK As ComboBox
     Friend WithEvents LblFolderPath As Label
     Friend WithEvents LblOneNoteFolderPath As Label
+    Friend WithEvents BtnApplyFilter As Button
 End Class

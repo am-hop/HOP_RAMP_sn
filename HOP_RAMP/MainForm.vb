@@ -88,7 +88,7 @@ Public Class MainForm
                     RtbToDo.Text = dr.Item(40).ToString
                     RtbJournal.Text = dr.Item(41).ToString
                     ChkUpcoming.Checked = dr.Item(42).ToString ' changed all chkboxes to .tostring
-                    RadGreen.Text = dr.Item(43).ToString 'error shows convertion string G to type boolean is not valid - testing this one
+                    'RadGreen.Text = dr.Item(43).ToString 'error shows convertion string G to type boolean is not valid - testing this one
                     LblFolderPath.Text = dr.Item(44).ToString
                     LblOneNoteFolderPath.Text = dr.Item(45).ToString
                 End While
@@ -97,6 +97,7 @@ Public Class MainForm
             End Try
         End If
     End Sub
+
     Public Sub LoadAllBids()
         OpenCon()
         Try
@@ -148,7 +149,7 @@ Public Class MainForm
                 myitems.SubItems.Add(40).Text = dr.Item(40).ToString
                 myitems.SubItems.Add(41).Text = dr.Item(41).ToString
                 myitems.SubItems.Add(42).Text = dr.Item(42).ToString
-                myitems.SubItems.Add(43).Text = dr.Item(43).ToString
+                'myitems.SubItems.Add(43).Text = dr.Item(43).ToString 'TrafficLight
                 myitems.SubItems.Add(44).Text = dr.Item(44).ToString
                 myitems.SubItems.Add(44).Text = dr.Item(45).ToString
             End While
@@ -165,65 +166,6 @@ Public Class MainForm
         CountLost()
     End Sub
 
-    Private Sub CountLost()
-        OpenCon()
-        Try
-            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Lost'"
-            cmd = New SQLiteCommand(query, con)
-            LblLost.Text = cmd.ExecuteScalar.ToString & " LOST"
-            con.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Private Sub CountWon()
-        OpenCon()
-        Try
-            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Won'"
-            cmd = New SQLiteCommand(query, con)
-            LblWon.Text = cmd.ExecuteScalar.ToString & " WON"
-            con.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-    End Sub
-    Private Sub CountPendingAward()
-        OpenCon()
-        Try
-            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Pending Award'"
-            cmd = New SQLiteCommand(query, con)
-            LblPendingAward.Text = cmd.ExecuteScalar.ToString & " PENDING AWARD"
-            con.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-    Private Sub CountActiveBids()
-        'LblActive.Text = String.Empty
-        OpenCon()
-        Try
-            query = "SELECT COUNT(BidActive) from rfq where BidActive = 1"
-            cmd = New SQLiteCommand(query, con)
-            LblActive.Text = cmd.ExecuteScalar.ToString & " ACTIVE"
-            con.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Private Sub CountUpcoming()
-        OpenCon()
-        Try
-            query = "SELECT COUNT(Upcoming) from rfq where Upcoming = 1"
-            cmd = New SQLiteCommand(query, con)
-            LblUpcoming.Text = cmd.ExecuteScalar.ToString & " UPCOMING"
-            con.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
     Public Sub ClearAll()
         For Each gb As GroupBox In Me.Controls.OfType(Of GroupBox)()
             For Each tb As TextBox In gb.Controls.OfType(Of TextBox)()
@@ -243,11 +185,6 @@ Public Class MainForm
         LblCustomerHeader.Text = String.Empty
         LblID.Text = String.Empty
         LblCount.Text = String.Empty
-        'CboAMGK.SelectedItem.Clear()
-        'CboAnalyst.Items.Clear()
-        'CboAwardStatus.Items.Clear()
-        'CboLeadRegion.Items.Clear()
-        'CboLeadRegion.Items.Clear()
 
         LoadAllBids()
     End Sub
@@ -258,16 +195,16 @@ Public Class MainForm
                     AwardStatus,LeadRegion,LeadGK,AMGK,Analyst,BidAssigned,BidReceived,PortLaunch,R1_Launch,R1_InternalDue,
                     R1_CustomerDue,	R1_Submitted,R2_Received,R2_Launch,R2_InternalDue,R2_CustomerDue,R2_Submitted,
                     R3_Received,R3_Launch,R3_InternalDue,R3_CustomerDue,R3_Submitted,RateValidity,DimFactor,StandardFuel,
-                    PickupDay,Strategy,QA,ToDo,Journal,Upcoming,TrafficLight,FolderPath,OneNoteFolderPath) VALUES 
+                    PickupDay,Strategy,QA,ToDo,Journal,Upcoming,FolderPath,OneNoteFolderPath) VALUES 
                     (@USBid,@BidActive,@BidID,@Customer,@BidName,@BMT,@CO,@Tier,@NoOfRounds,@Status,@PercentComplete,@AwardStatus,
                     @LeadRegion,@LeadGK,@AMGK,@Analyst,@BidAssigned,@BidReceived,@PortLaunch,@R1_Launch,@R1_InternalDue,@R1_CustomerDue,
                     @R1_Submitted,@R2_Received,@R2_Launch,@R2_InternalDue,@R2_CustomerDue,@R2_Submitted,@R3_Received,@R3_Launch,
                     @R3_InternalDue,@R3_CustomerDue,@R3_Submitted,@RateValidity,@DimFactor,@StandardFuel,@PickupDay,@Strategy,
-                    @QA,@ToDo,@Journal,@Upcoming,@TrafficLight,@FolderPath,@OneNoteFolderPath)"
+                    @QA,@ToDo,@Journal,@Upcoming,@FolderPath,@OneNoteFolderPath)"
             cmd = New SQLiteCommand(query, con)
             With cmd
-                .Parameters.AddWithValue("@USBid", ChkUSBid.Checked.ToString)
-                .Parameters.AddWithValue("@BidActive", ChkBidActive.Checked.ToString)
+                .Parameters.AddWithValue("@USBid", ChkUSBid.Checked)
+                .Parameters.AddWithValue("@BidActive", ChkBidActive.Checked)
                 .Parameters.AddWithValue("@BidID", TxtBidID.Text.Trim)
                 .Parameters.AddWithValue("@Customer", TxtCustomer.Text.Trim)
                 .Parameters.AddWithValue("@BidName", TxtBidName.Text.Trim)
@@ -301,14 +238,14 @@ Public Class MainForm
                 .Parameters.AddWithValue("@R3_Submitted", TxtR3_Submitted.Text.Trim)
                 .Parameters.AddWithValue("@RateValidity", TxtRateValidity.Text.Trim)
                 .Parameters.AddWithValue("@DimFactor", TxtDimFactor.Text.Trim)
-                .Parameters.AddWithValue("@StandardFuel", ChkStandardFuel.Checked.ToString)
+                .Parameters.AddWithValue("@StandardFuel", ChkStandardFuel.Checked)
                 .Parameters.AddWithValue("@PickupDay", TxtPickupDay.Text.Trim)
                 .Parameters.AddWithValue("@Strategy", RtbStrategy.Text.Trim)
                 .Parameters.AddWithValue("@QA", RtbQA.Text.Trim)
                 .Parameters.AddWithValue("@ToDo", RtbToDo.Text.Trim)
                 .Parameters.AddWithValue("@Journal", RtbJournal.Text.Trim)
-                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked.ToString)
-                .Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
+                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked)
+                '.Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
                 .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
                 .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
                 .ExecuteNonQuery()
@@ -337,12 +274,12 @@ Public Class MainForm
                 DimFactor=@DimFactor,
                 StandardFuel=@StandardFuel,
                 PickupDay=@PickupDay,
-                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,TrafficLight=@TrafficLight,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
+                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
                     WHERE ID= '" & LblID.Text & "'"
             cmd = New SQLiteCommand(query, con)
             With cmd
-                .Parameters.AddWithValue("@USBid", ChkUSBid.Checked.ToString)
-                .Parameters.AddWithValue("@BidActive", ChkBidActive.Checked.ToString)
+                .Parameters.AddWithValue("@USBid", ChkUSBid.Checked)
+                .Parameters.AddWithValue("@BidActive", ChkBidActive.Checked)
                 .Parameters.AddWithValue("@BidID", TxtBidID.Text.Trim)
                 .Parameters.AddWithValue("@Customer", TxtCustomer.Text.Trim)
                 .Parameters.AddWithValue("@BidName", TxtBidName.Text.Trim)
@@ -376,14 +313,14 @@ Public Class MainForm
                 .Parameters.AddWithValue("@R3_Submitted", TxtR3_Submitted.Text.Trim)
                 .Parameters.AddWithValue("@RateValidity", TxtRateValidity.Text.Trim)
                 .Parameters.AddWithValue("@DimFactor", TxtDimFactor.Text.Trim)
-                .Parameters.AddWithValue("@StandardFuel", ChkStandardFuel.Checked.ToString)
+                .Parameters.AddWithValue("@StandardFuel", ChkStandardFuel.Checked)
                 .Parameters.AddWithValue("@PickupDay", TxtPickupDay.Text.Trim)
                 .Parameters.AddWithValue("@Strategy", RtbStrategy.Text.Trim)
                 .Parameters.AddWithValue("@QA", RtbQA.Text.Trim)
                 .Parameters.AddWithValue("@ToDo", RtbToDo.Text.Trim)
                 .Parameters.AddWithValue("@Journal", RtbJournal.Text.Trim)
-                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked.ToString)
-                .Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
+                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked)
+                '.Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
                 .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
                 .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
                 .ExecuteNonQuery()
@@ -485,7 +422,7 @@ Public Class MainForm
                 myitems.SubItems.Add(40).Text = dr.Item(40).ToString
                 myitems.SubItems.Add(41).Text = dr.Item(41).ToString
                 myitems.SubItems.Add(42).Text = dr.Item(42).ToString
-                myitems.SubItems.Add(43).Text = dr.Item(43).ToString
+                'myitems.SubItems.Add(43).Text = dr.Item(43).ToString
                 myitems.SubItems.Add(44).Text = dr.Item(44).ToString
                 myitems.SubItems.Add(44).Text = dr.Item(45).ToString
             End While
@@ -529,12 +466,12 @@ Public Class MainForm
                 DimFactor=@DimFactor,
                 StandardFuel=@StandardFuel,
                 PickupDay=@PickupDay,
-                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,TrafficLight=@TrafficLight,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
+                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
                     WHERE ID= '" & LblID.Text & "'"
             cmd = New SQLiteCommand(query, con)
             With cmd
-                .Parameters.AddWithValue("@USBid", ChkUSBid.Checked.ToString)
-                .Parameters.AddWithValue("@BidActive", ChkBidActive.Checked.ToString)
+                .Parameters.AddWithValue("@USBid", ChkUSBid.Checked)
+                .Parameters.AddWithValue("@BidActive", ChkBidActive.Checked)
                 .Parameters.AddWithValue("@BidID", TxtBidID.Text.Trim)
                 .Parameters.AddWithValue("@Customer", TxtCustomer.Text.Trim)
                 .Parameters.AddWithValue("@BidName", TxtBidName.Text.Trim)
@@ -568,14 +505,14 @@ Public Class MainForm
                 .Parameters.AddWithValue("@R3_Submitted", TxtR3_Submitted.Text.Trim)
                 .Parameters.AddWithValue("@RateValidity", TxtRateValidity.Text.Trim)
                 .Parameters.AddWithValue("@DimFactor", TxtDimFactor.Text.Trim)
-                .Parameters.AddWithValue("@StandardFuel", ChkStandardFuel.Checked.ToString)
+                .Parameters.AddWithValue("@StandardFuel", ChkStandardFuel.Checked)
                 .Parameters.AddWithValue("@PickupDay", TxtPickupDay.Text.Trim)
                 .Parameters.AddWithValue("@Strategy", RtbStrategy.Text.Trim)
                 .Parameters.AddWithValue("@QA", RtbQA.Text.Trim)
                 .Parameters.AddWithValue("@ToDo", RtbToDo.Text.Trim)
                 .Parameters.AddWithValue("@Journal", RtbJournal.Text.Trim)
-                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked.ToString)
-                .Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
+                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked)
+                '.Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
                 .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
                 .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
                 .ExecuteNonQuery()
@@ -643,6 +580,66 @@ Public Class MainForm
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         LblTime.Text = TimeOfDay.ToLongTimeString
+    End Sub
+
+    Private Sub CountLost()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Lost'"
+            cmd = New SQLiteCommand(query, con)
+            LblLost.Text = cmd.ExecuteScalar.ToString & " LOST"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub CountWon()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Won'"
+            cmd = New SQLiteCommand(query, con)
+            LblWon.Text = cmd.ExecuteScalar.ToString & " WON"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    Private Sub CountPendingAward()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Pending Award'"
+            cmd = New SQLiteCommand(query, con)
+            LblPendingAward.Text = cmd.ExecuteScalar.ToString & " PENDING AWARD"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub CountActiveBids()
+        'LblActive.Text = String.Empty
+        OpenCon()
+        Try
+            query = "SELECT COUNT(BidActive) from rfq where BidActive = 1"
+            cmd = New SQLiteCommand(query, con)
+            LblActive.Text = cmd.ExecuteScalar.ToString & " ACTIVE"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub CountUpcoming()
+        OpenCon()
+        Try
+            query = "SELECT COUNT(Upcoming) from rfq where Upcoming = 1"
+            cmd = New SQLiteCommand(query, con)
+            LblUpcoming.Text = cmd.ExecuteScalar.ToString & " UPCOMING"
+            con.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
 End Class
