@@ -7,26 +7,26 @@ Public Class MainForm
             .FullRowSelect = True
             .GridLines = True
             .View = View.Details
-            .Columns.Add("No")
-            .Columns.Add("US Bid")
-            .Columns.Add("Active")
-            .Columns.Add("Bid ID")
-            .Columns.Add("Customer")
-            .Columns.Add("Full Bid Name")
-            .Columns.Add("BMT")
-            .Columns.Add("COMM Owner")
-            .Columns.Add("Tier")
-            .Columns.Add("Rnd")
-            .Columns.Add("Status")
-            .Columns.Add("%")
-            .Columns.Add("Award")
-            .Columns.Add("Lead Region")
-            .Columns.Add("Lead GK")
-            .Columns.Add("AM GK")
-            .Columns.Add("Analyst")
-            .Columns.Add("Assigned")
-            .Columns.Add("Received")
-            .Columns.Add("Port Launch")
+            .Columns.Add("No")                  '1
+            .Columns.Add("US Bid")              '2
+            .Columns.Add("Active")              '3
+            .Columns.Add("Bid ID")              '4
+            .Columns.Add("Customer")            '5
+            .Columns.Add("Full Bid Name")       '6
+            .Columns.Add("BMT")                 '7
+            .Columns.Add("COMM Owner")          '8
+            .Columns.Add("Tier")                '9
+            .Columns.Add("Rnd")                 '10
+            .Columns.Add("Status")              '11
+            .Columns.Add("%")                   '12
+            .Columns.Add("Award")               '13
+            .Columns.Add("Lead Region")         '14
+            .Columns.Add("Lead GK")             '15
+            .Columns.Add("AM GK")               '16
+            .Columns.Add("Analyst")             '17
+            .Columns.Add("Assigned")            '18
+            .Columns.Add("Received")            '19
+            .Columns.Add("Port Launch")         '20
         End With
         TxtBidID.Focus()
         LoadAllBids()
@@ -81,13 +81,16 @@ Public Class MainForm
                     TxtR3_Submitted.Text = dr.Item(33).ToString
                     TxtRateValidity.Text = dr.Item(34).ToString
                     TxtDimFactor.Text = dr.Item(35).ToString
-                    ChkStandardFuel.Checked = dr.Item(36)
+                    ChkStandardFuel.Checked = dr.Item(36).ToString 'changed all chkboxes to .tostring
                     TxtPickupDay.Text = dr.Item(37).ToString
                     RtbStrategy.Text = dr.Item(38).ToString
                     RtbQA.Text = dr.Item(39).ToString
                     RtbToDo.Text = dr.Item(40).ToString
                     RtbJournal.Text = dr.Item(41).ToString
-                    ChkUpcomingBid.Checked = dr.Item(42).ToString ' changed all chkboxes to .tostring
+                    ChkUpcoming.Checked = dr.Item(42).ToString ' changed all chkboxes to .tostring
+                    RadGreen.Text = dr.Item(43).ToString 'error shows convertion string G to type boolean is not valid - testing this one
+                    LblFolderPath.Text = dr.Item(44).ToString
+                    LblOneNoteFolderPath.Text = dr.Item(45).ToString
                 End While
             Catch ex As Exception
                 MessageBox.Show(ex.Message & ", ListView function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -145,6 +148,9 @@ Public Class MainForm
                 myitems.SubItems.Add(40).Text = dr.Item(40).ToString
                 myitems.SubItems.Add(41).Text = dr.Item(41).ToString
                 myitems.SubItems.Add(42).Text = dr.Item(42).ToString
+                myitems.SubItems.Add(43).Text = dr.Item(43).ToString
+                myitems.SubItems.Add(44).Text = dr.Item(44).ToString
+                myitems.SubItems.Add(44).Text = dr.Item(45).ToString
             End While
             LvwBidList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
             con.Close()
@@ -162,7 +168,7 @@ Public Class MainForm
     Private Sub CountLost()
         OpenCon()
         Try
-            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'LOST'"
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Lost'"
             cmd = New SQLiteCommand(query, con)
             LblLost.Text = cmd.ExecuteScalar.ToString & " LOST"
             con.Close()
@@ -174,7 +180,7 @@ Public Class MainForm
     Private Sub CountWon()
         OpenCon()
         Try
-            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'WON'"
+            query = "SELECT COUNT(AwardStatus) from rfq where AwardStatus = 'Won'"
             cmd = New SQLiteCommand(query, con)
             LblWon.Text = cmd.ExecuteScalar.ToString & " WON"
             con.Close()
@@ -223,9 +229,6 @@ Public Class MainForm
             For Each tb As TextBox In gb.Controls.OfType(Of TextBox)()
                 tb.Clear()
             Next
-            'For Each cb As ComboBox In cb.Controls.OfType(Of ComboBox)()
-            '    cb.Items.Clear()
-            'Next
         Next
         RtbJournal.ResetText()
         RtbQA.ResetText()
@@ -255,12 +258,12 @@ Public Class MainForm
                     AwardStatus,LeadRegion,LeadGK,AMGK,Analyst,BidAssigned,BidReceived,PortLaunch,R1_Launch,R1_InternalDue,
                     R1_CustomerDue,	R1_Submitted,R2_Received,R2_Launch,R2_InternalDue,R2_CustomerDue,R2_Submitted,
                     R3_Received,R3_Launch,R3_InternalDue,R3_CustomerDue,R3_Submitted,RateValidity,DimFactor,StandardFuel,
-                    PickupDay,Strategy,QA,ToDo,Journal,Upcoming) VALUES 
+                    PickupDay,Strategy,QA,ToDo,Journal,Upcoming,TrafficLight,FolderPath,OneNoteFolderPath) VALUES 
                     (@USBid,@BidActive,@BidID,@Customer,@BidName,@BMT,@CO,@Tier,@NoOfRounds,@Status,@PercentComplete,@AwardStatus,
                     @LeadRegion,@LeadGK,@AMGK,@Analyst,@BidAssigned,@BidReceived,@PortLaunch,@R1_Launch,@R1_InternalDue,@R1_CustomerDue,
                     @R1_Submitted,@R2_Received,@R2_Launch,@R2_InternalDue,@R2_CustomerDue,@R2_Submitted,@R3_Received,@R3_Launch,
                     @R3_InternalDue,@R3_CustomerDue,@R3_Submitted,@RateValidity,@DimFactor,@StandardFuel,@PickupDay,@Strategy,
-                    @QA,@ToDo,@Journal,@Upcoming)"
+                    @QA,@ToDo,@Journal,@Upcoming,@TrafficLight,@FolderPath,@OneNoteFolderPath)"
             cmd = New SQLiteCommand(query, con)
             With cmd
                 .Parameters.AddWithValue("@USBid", ChkUSBid.Checked.ToString)
@@ -304,7 +307,10 @@ Public Class MainForm
                 .Parameters.AddWithValue("@QA", RtbQA.Text.Trim)
                 .Parameters.AddWithValue("@ToDo", RtbToDo.Text.Trim)
                 .Parameters.AddWithValue("@Journal", RtbJournal.Text.Trim)
-                .Parameters.AddWithValue("@Upcoming", ChkUpcomingBid.Checked.ToString)
+                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked.ToString)
+                .Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
+                .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
+                .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
                 .ExecuteNonQuery()
             End With
             Dim SavedMessage As String = "New Bid has been successfully added" & " [" & Now & "]"
@@ -331,7 +337,7 @@ Public Class MainForm
                 DimFactor=@DimFactor,
                 StandardFuel=@StandardFuel,
                 PickupDay=@PickupDay,
-                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming 
+                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,TrafficLight=@TrafficLight,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
                     WHERE ID= '" & LblID.Text & "'"
             cmd = New SQLiteCommand(query, con)
             With cmd
@@ -376,7 +382,10 @@ Public Class MainForm
                 .Parameters.AddWithValue("@QA", RtbQA.Text.Trim)
                 .Parameters.AddWithValue("@ToDo", RtbToDo.Text.Trim)
                 .Parameters.AddWithValue("@Journal", RtbJournal.Text.Trim)
-                .Parameters.AddWithValue("@Upcoming", ChkUpcomingBid.Checked.ToString)
+                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked.ToString)
+                .Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
+                .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
+                .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
                 .ExecuteNonQuery()
             End With
             Dim UpdatedMessage As String = "Bid has been successfully updated" & " [" & Now & "]"
@@ -476,6 +485,9 @@ Public Class MainForm
                 myitems.SubItems.Add(40).Text = dr.Item(40).ToString
                 myitems.SubItems.Add(41).Text = dr.Item(41).ToString
                 myitems.SubItems.Add(42).Text = dr.Item(42).ToString
+                myitems.SubItems.Add(43).Text = dr.Item(43).ToString
+                myitems.SubItems.Add(44).Text = dr.Item(44).ToString
+                myitems.SubItems.Add(44).Text = dr.Item(45).ToString
             End While
             LblCount.Text = LvwBidList.Items.Count & " record(s) found!" & " [" & Now & "]"
         Catch ex As Exception
@@ -517,7 +529,7 @@ Public Class MainForm
                 DimFactor=@DimFactor,
                 StandardFuel=@StandardFuel,
                 PickupDay=@PickupDay,
-                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming 
+                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,TrafficLight=@TrafficLight,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
                     WHERE ID= '" & LblID.Text & "'"
             cmd = New SQLiteCommand(query, con)
             With cmd
@@ -562,7 +574,10 @@ Public Class MainForm
                 .Parameters.AddWithValue("@QA", RtbQA.Text.Trim)
                 .Parameters.AddWithValue("@ToDo", RtbToDo.Text.Trim)
                 .Parameters.AddWithValue("@Journal", RtbJournal.Text.Trim)
-                .Parameters.AddWithValue("@Upcoming", ChkUpcomingBid.Checked.ToString)
+                .Parameters.AddWithValue("@Upcoming", ChkUpcoming.Checked.ToString)
+                .Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
+                .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
+                .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
                 .ExecuteNonQuery()
             End With
             Dim UpdatedMessage As String = "Changes have been successfully committed" & " [" & Now & "]"

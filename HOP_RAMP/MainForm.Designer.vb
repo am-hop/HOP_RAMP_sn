@@ -72,7 +72,7 @@ Partial Class MainForm
         Me.CboAMGK = New System.Windows.Forms.ComboBox()
         Me.CboLeadGK = New System.Windows.Forms.ComboBox()
         Me.CboLeadRegion = New System.Windows.Forms.ComboBox()
-        Me.ChkUpcomingBid = New System.Windows.Forms.CheckBox()
+        Me.ChkUpcoming = New System.Windows.Forms.CheckBox()
         Me.ChkUSBid = New System.Windows.Forms.CheckBox()
         Me.LblID = New System.Windows.Forms.Label()
         Me.ChkStandardFuel = New System.Windows.Forms.CheckBox()
@@ -169,6 +169,8 @@ Partial Class MainForm
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BtnLinkOneNote = New System.Windows.Forms.Button()
         Me.BtnExportNotes = New System.Windows.Forms.Button()
+        Me.LblFolderPath = New System.Windows.Forms.Label()
+        Me.LblOneNoteFolderPath = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.GbxBidList.SuspendLayout()
@@ -552,7 +554,7 @@ Partial Class MainForm
         Me.GbxBidInfo.Controls.Add(Me.CboAMGK)
         Me.GbxBidInfo.Controls.Add(Me.CboLeadGK)
         Me.GbxBidInfo.Controls.Add(Me.CboLeadRegion)
-        Me.GbxBidInfo.Controls.Add(Me.ChkUpcomingBid)
+        Me.GbxBidInfo.Controls.Add(Me.ChkUpcoming)
         Me.GbxBidInfo.Controls.Add(Me.ChkUSBid)
         Me.GbxBidInfo.Controls.Add(Me.LblID)
         Me.GbxBidInfo.Controls.Add(Me.ChkStandardFuel)
@@ -626,15 +628,15 @@ Partial Class MainForm
         Me.CboLeadRegion.Size = New System.Drawing.Size(194, 21)
         Me.CboLeadRegion.TabIndex = 10
         '
-        'ChkUpcomingBid
+        'ChkUpcoming
         '
-        Me.ChkUpcomingBid.AutoSize = True
-        Me.ChkUpcomingBid.Location = New System.Drawing.Point(213, 46)
-        Me.ChkUpcomingBid.Name = "ChkUpcomingBid"
-        Me.ChkUpcomingBid.Size = New System.Drawing.Size(92, 17)
-        Me.ChkUpcomingBid.TabIndex = 2
-        Me.ChkUpcomingBid.Text = "Upcoming Bid"
-        Me.ChkUpcomingBid.UseVisualStyleBackColor = True
+        Me.ChkUpcoming.AutoSize = True
+        Me.ChkUpcoming.Location = New System.Drawing.Point(213, 46)
+        Me.ChkUpcoming.Name = "ChkUpcoming"
+        Me.ChkUpcoming.Size = New System.Drawing.Size(92, 17)
+        Me.ChkUpcoming.TabIndex = 2
+        Me.ChkUpcoming.Text = "Upcoming Bid"
+        Me.ChkUpcoming.UseVisualStyleBackColor = True
         '
         'ChkUSBid
         '
@@ -1515,12 +1517,34 @@ Partial Class MainForm
         Me.BtnExportNotes.Text = "Export Notes"
         Me.BtnExportNotes.UseVisualStyleBackColor = True
         '
+        'LblFolderPath
+        '
+        Me.LblFolderPath.AutoSize = True
+        Me.LblFolderPath.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LblFolderPath.Location = New System.Drawing.Point(438, 109)
+        Me.LblFolderPath.Name = "LblFolderPath"
+        Me.LblFolderPath.Size = New System.Drawing.Size(163, 13)
+        Me.LblFolderPath.TabIndex = 84
+        Me.LblFolderPath.Text = "My Documents/Customer Name/"
+        '
+        'LblOneNoteFolderPath
+        '
+        Me.LblOneNoteFolderPath.AutoSize = True
+        Me.LblOneNoteFolderPath.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LblOneNoteFolderPath.Location = New System.Drawing.Point(860, 109)
+        Me.LblOneNoteFolderPath.Name = "LblOneNoteFolderPath"
+        Me.LblOneNoteFolderPath.Size = New System.Drawing.Size(196, 13)
+        Me.LblOneNoteFolderPath.TabIndex = 85
+        Me.LblOneNoteFolderPath.Text = "My Documents/OneNote/Customer.one"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1884, 1015)
+        Me.Controls.Add(Me.LblOneNoteFolderPath)
+        Me.Controls.Add(Me.LblFolderPath)
         Me.Controls.Add(Me.BtnExportNotes)
         Me.Controls.Add(Me.BtnLinkOneNote)
         Me.Controls.Add(Me.LblTime)
@@ -1692,7 +1716,7 @@ Partial Class MainForm
     Friend WithEvents LblPendingAward As Label
     Friend WithEvents LblUpcoming As Label
     Friend WithEvents LblActive As Label
-    Friend WithEvents ChkUpcomingBid As CheckBox
+    Friend WithEvents ChkUpcoming As CheckBox
     Friend WithEvents RadRed As RadioButton
     Friend WithEvents RadYellow As RadioButton
     Friend WithEvents RadGreen As RadioButton
@@ -1715,4 +1739,6 @@ Partial Class MainForm
     Friend WithEvents CboAnalyst As ComboBox
     Friend WithEvents CboAMGK As ComboBox
     Friend WithEvents CboLeadGK As ComboBox
+    Friend WithEvents LblFolderPath As Label
+    Friend WithEvents LblOneNoteFolderPath As Label
 End Class
