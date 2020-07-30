@@ -1,6 +1,9 @@
 ﻿Imports System.IO
 Imports System.Data.SQLite
 Public Class MainForm
+
+    Dim CurrentFilter As String
+
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         With LvwBidList
             .Columns.Clear()
@@ -8,8 +11,8 @@ Public Class MainForm
             .GridLines = True
             .View = View.Details
             .Columns.Add("No")                  '1
-            .Columns.Add("US Bid")              '2
-            .Columns.Add("Active")              '3
+            .Columns.Add("US")                  '2
+            .Columns.Add("Act.")              '3
             .Columns.Add("Bid ID")              '4
             .Columns.Add("Customer")            '5
             .Columns.Add("Full Bid Name")       '6
@@ -28,15 +31,20 @@ Public Class MainForm
             .Columns.Add("Received")            '19
             .Columns.Add("Port Launch")         '20
         End With
+        ClearAll()
         TxtBidID.Focus()
         LoadAllBids()
     End Sub
 
     Private Sub LvwBidList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LvwBidList.SelectedIndexChanged
-        If BtnSave.Enabled = True Then
-            BtnSave.Enabled = False
-            BtnUpdate.Enabled = True
-        End If
+        BtnSave.Enabled = False
+        BtnUpdate.Enabled = True
+        BtnDelete.Enabled = True
+        BtnClear.Enabled = True
+        BtnCreateFolderBidName.Enabled = True
+        BtnCommitChanges.Enabled = True
+        BtnExportNotesHTML.Enabled = True
+        BtnExportNotesPlainText.Enabled = True
         If LvwBidList.SelectedItems.Count > 0 Then
             OpenCon()
             Try
@@ -90,6 +98,7 @@ Public Class MainForm
                     ChkUpcoming.Checked = dr.Item(42).ToString ' changed all chkboxes to .tostring
                     'RadGreen.Text = dr.Item(43).ToString 'error shows convertion string G to type boolean is not valid - testing this one
                     LblFolderPath.Text = dr.Item(44).ToString
+                    ToolStripStatusFolderPath.Text = dr.Item(44).ToString
                     LblOneNoteFolderPath.Text = dr.Item(45).ToString
                 End While
             Catch ex As Exception
@@ -101,7 +110,27 @@ Public Class MainForm
     Public Sub LoadAllBids()
         OpenCon()
         Try
-            query = "SELECT * from rfq"
+            Dim filterstatus As String
+            filterstatus = CboFilter.Text.ToString()
+            Select Case filterstatus
+                Case "Active"
+                    CurrentFilter = "SELECT * FROM rfq where BidActive = 1"
+                Case "Inactive"
+                    CurrentFilter = "SELECT * FROM rfq where BidActive <> 1"
+                Case "US Bids"
+                    CurrentFilter = "SELECT * FROM rfq where USBid = 1"
+                Case "Upcoming"
+                    CurrentFilter = "SELECT * FROM rfq where Upcoming = 1"
+                Case "All"
+                    CurrentFilter = "SELECT * FROM rfq"
+                Case "Pending Award"
+                    CurrentFilter = "SELECT * FROM rfq where AwardStatus = 'Pending Award'"
+                Case "Won"
+                    CurrentFilter = "SELECT * FROM rfq where AwardStatus = 'Won'"
+                Case "Lost"
+                    CurrentFilter = "SELECT * FROM rfq where AwardStatus = 'Lost'"
+            End Select
+            query = CurrentFilter
             cmd = New SQLiteCommand(query, con)
             dr = cmd.ExecuteReader
             LvwBidList.Items.Clear()
@@ -154,16 +183,23 @@ Public Class MainForm
                 myitems.SubItems.Add(44).Text = dr.Item(45).ToString
             End While
             LvwBidList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
-            con.Close()
         Catch ex As Exception
             MessageBox.Show(ex.Message & ", LoadAllBids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
+        BtnDelete.Enabled = False
+        BtnCreateFolderBidName.Enabled = False
+        BtnCommitChanges.Enabled = False
+        BtnExportNotesHTML.Enabled = False
+        BtnExportNotesPlainText.Enabled = False
         CountActiveBids()
         CountUpcoming()
         CountPendingAward()
         CountWon()
         CountLost()
+    End Sub
+
+    Private Sub BtnApplyFilter_Click(sender As Object, e As EventArgs) Handles BtnApplyFilter.Click
+        LoadAllBids()
     End Sub
 
     Public Sub ClearAll()
@@ -177,17 +213,29 @@ Public Class MainForm
         RtbStrategy.ResetText()
         RtbToDo.ResetText()
         RadCustomer.Checked = True
-        TxtSearch.Text = String.Empty
+        BtnDelete.Enabled = False
+        BtnCreateFolderBidName.Enabled = False
+        BtnCommitChanges.Enabled = False
+        BtnExportNotesHTML.Enabled = False
+        BtnExportNotesPlainText.Enabled = False
         ChkBidActive.Checked = True
         ChkStandardFuel.Checked = False
         ChkUSBid.Checked = False
         LvwBidList.Items.Clear()
+        TxtSearch.Text = String.Empty
         LblCustomerHeader.Text = String.Empty
         LblID.Text = String.Empty
         LblCount.Text = String.Empty
-
+        CboAMGK.Text = String.Empty
+        CboLeadGK.Text = String.Empty
+        CboAnalyst.Text = String.Empty
+        CboAwardStatus.Text = String.Empty
+        CboLeadRegion.Text = String.Empty
+        LblFolderPath.Text = String.Empty
+        LblOneNoteFolderPath.Text = String.Empty
         LoadAllBids()
     End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         OpenCon()
         Try
@@ -259,6 +307,7 @@ Public Class MainForm
             MessageBox.Show(ex.Message & ", SAVE function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         OpenCon()
         Try
@@ -338,6 +387,7 @@ Public Class MainForm
             MessageBox.Show(ex.Message & ", UPDATE function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
         ClearAll()
         BtnUpdate.Enabled = False
@@ -345,6 +395,7 @@ Public Class MainForm
         TxtBidID.Focus()
         LblID.Text = String.Empty
     End Sub
+
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
         If LvwBidList.SelectedItems.Count = 0 Then
             MessageBox.Show("Please select a customer in the list to delete", "Select item", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -366,6 +417,7 @@ Public Class MainForm
         TxtBidID.Focus()
         LblTimestamp.Text = Now
     End Sub
+
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
         OpenCon()
         Try
@@ -431,6 +483,7 @@ Public Class MainForm
             MessageBox.Show(ex.Message & ", SEARCH function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub BtnReset_Click(sender As Object, e As EventArgs) Handles BtnReset.Click
         ClearAll()
         BtnUpdate.Enabled = False
@@ -439,18 +492,25 @@ Public Class MainForm
         LblID.Text = String.Empty
         LblCount.Text = String.Empty
     End Sub
+
     Private Sub BtnCreateFolderBidName_Click(sender As Object, e As EventArgs) Handles BtnCreateFolderBidName.Click
-        Dim FolderBidName As String = ("/" & TxtBidName.Text).ToString
+        Dim FolderBidName As String = ("\" & TxtBidName.Text).ToString
         Dim fullpath As String = (My.Computer.FileSystem.SpecialDirectories.MyDocuments & FolderBidName).ToString
         Directory.CreateDirectory(fullpath)
         Process.Start(fullpath)
+        LblFolderPath.Text = fullpath.ToString
+        ToolStripStatusFolderPath.Text = LblFolderPath.Text.ToString
     End Sub
+
     Private Sub BtnCreateFolderCustomerName_Click(sender As Object, e As EventArgs) Handles BtnCreateFolderCustomerName.Click
-        Dim FolderCustomerName As String = ("/" & TxtCustomer.Text).ToString
+        '======== CURRENTLY INVISIBLE ==================
+        Dim FolderCustomerName As String = ("\" & TxtCustomer.Text).ToString
         Dim fullpath As String = (My.Computer.FileSystem.SpecialDirectories.MyDocuments & FolderCustomerName).ToString
         Directory.CreateDirectory(fullpath)
         Process.Start(fullpath)
+        LblFolderPath.Text = fullpath.ToString
     End Sub
+
     Private Sub BtnCommitChanges_Click(sender As Object, e As EventArgs) Handles BtnCommitChanges.Click
         OpenCon()
         Try
@@ -519,60 +579,70 @@ Public Class MainForm
             End With
             Dim UpdatedMessage As String = "Changes have been successfully committed" & " [" & Now & "]"
             ToolStripStatusSAVED.Text = UpdatedMessage
-            LoadAllBids()
             BtnUpdate.Enabled = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             RtbJournal.Focus()
-            LblID.Text = String.Empty
             LblTimestamp.Text = Now
         Catch ex As Exception
             MessageBox.Show(ex.Message & ", COMMIT function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub MenuBidLog_Click(sender As Object, e As EventArgs) Handles MenuBidLog.Click
         Dim url As String = "https://isharenew.dhl.com/sites/RACC_AMER/Lists/Bid%20Log/Standard%20Bid%20Log.aspx"
         Process.Start(url)
     End Sub
+
     Private Sub MenuCACCcontactlist_Click(sender As Object, e As EventArgs) Handles MenuCACCcontactlist.Click
         Dim url As String = "https://isharenew.dhl.com/sites/gho_afr_forum/Lists/HoP%20Contact%20List/AllItems.aspx"
         Process.Start(url)
     End Sub
+
     Private Sub MenuGAF_Click(sender As Object, e As EventArgs) Handles MenuGAF.Click
         Dim url As String = "https://isharenew.dhl.com/sites/gho_afr_forum/default.aspx"
         Process.Start(url)
     End Sub
+
     Private Sub MenuHOBIT_Click(sender As Object, e As EventArgs) Handles MenuHOBIT.Click
         Dim url As String = "https://isharenew.dhl.com/sites/gho_afr_forum/product/Reports/Forms/AllItems.aspx?RootFolder=%2Fsites%2Fgho%5Fafr%5Fforum%2Fproduct%2FReports&"
         Process.Start(url)
     End Sub
+
     Private Sub MenuRACC_Click(sender As Object, e As EventArgs) Handles MenuRACC.Click
         Dim url As String = "https://isharenew.dhl.com/sites/RACC_AMER/default.aspx"
         Process.Start(url)
     End Sub
+
     Private Sub MenuSOP_Click(sender As Object, e As EventArgs) Handles MenuSOP.Click
         Dim url As String = "https://isharenew.dhl.com/sites/RACC_AMER/RACC%20RFQ%20Action%20Tracker/SOP/SOP.html"
         Process.Start(url)
     End Sub
+
     Private Sub MenuFORWIN_Click(sender As Object, e As EventArgs) Handles MenuFORWIN.Click
         Dim url As String = "https://frp.dhl.com/ibmcognos/cgi-bin/cognosisapi.dll?b_action=xts.run&m=portal/cc.xts&gohome="
         Process.Start(url)
     End Sub
+
     Private Sub MenuFreightender_Click(sender As Object, e As EventArgs) Handles MenuFreightender.Click
         Dim url As String = "https://app.freightender.com/#/login"
         Process.Start(url)
     End Sub
+
     Private Sub MenuFRP_Click(sender As Object, e As EventArgs) Handles MenuFRP.Click
         Dim url As String = "https://myfrp.dhl.com/air_freight.html"
         Process.Start(url)
     End Sub
+
     Private Sub MenuGRIPS_Click(sender As Object, e As EventArgs) Handles MenuGRIPS.Click
         Dim url As String = "https://login.lanetix.com/dhl-dgf"
         Process.Start(url)
     End Sub
+
     Private Sub MenuMTS_Click(sender As Object, e As EventArgs) Handles MenuMTS.Click
         Dim url As String = "https://mts.dhl.com/AIR/login"
         Process.Start(url)
     End Sub
+
     Private Sub MenuUSAFRReports_Click(sender As Object, e As EventArgs) Handles MenuUSAFRReports.Click
         Dim url As String = "https://isharenew.dhl.com/sites/USAFR/Steering/Reports/SitePages/Home.aspx"
         Process.Start(url)
@@ -606,6 +676,7 @@ Public Class MainForm
         End Try
 
     End Sub
+
     Private Sub CountPendingAward()
         OpenCon()
         Try
@@ -617,6 +688,7 @@ Public Class MainForm
             MessageBox.Show(ex.Message & ", Query for Active Bids function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub CountActiveBids()
         'LblActive.Text = String.Empty
         OpenCon()
@@ -642,4 +714,46 @@ Public Class MainForm
         End Try
     End Sub
 
+    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
+        Dim url As String = "Help.md.html"
+        Process.Start(url)
+    End Sub
+
+    Private Sub BtnExportNotes_Click(sender As Object, e As EventArgs) Handles BtnExportNotesHTML.Click
+        ExportNotesViaMarkdown()
+    End Sub
+
+
+    Private Sub ExportNotesViaMarkdown()
+        Dim file As StreamWriter
+        Dim fileheader As String = "<meta charset=""utf-8"" emacsmode=""-*- markdown -*-""><link rel=""stylesheet"" href=""https://casual-effects.com/markdeep/latest/journal.css?"">"
+        Dim filefooter As String = "<style class=""fallback"">body{visibility:hidden}</style><script> markdeepOptions = {tocStyle:'short'};</script><!-- Markdeep: --><script src=""https://casual-effects.com/markdeep/latest/markdeep.min.js?"" charset=""utf-8""></script>"
+        Dim path = LblFolderPath.Text & "\"
+        Dim markdeep = path & TxtCustomer.Text & "_" & Format(Now, "yyyy-MM-dd_hhmmss") & ".md.html"
+        file = My.Computer.FileSystem.OpenTextFileWriter(markdeep, True)
+        file.WriteLine(fileheader)
+        file.WriteLine(vbCrLf)
+        file.WriteLine(vbTab & vbTab & "**" & TxtCustomer.Text & "**")
+        file.WriteLine(vbTab & vbTab & FormatDateTime(Now))
+        file.WriteLine(vbCrLf)
+        file.WriteLine("Current Project Updates")
+        file.WriteLine(vbCrLf)
+        file.WriteLine(RtbJournal.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine(filefooter)
+        file.Close()
+    End Sub
+
+    Private Sub ExportNotesViaPlainText()
+        Dim file As StreamWriter
+        Dim path = LblFolderPath.Text & "\"
+        Dim plaintext = path & TxtCustomer.Text & "_" & Format(Now, "yyyy-MM-dd_hhmmss") & ".txt"
+        file = My.Computer.FileSystem.OpenTextFileWriter(plaintext, True)
+        file.WriteLine(RtbJournal.Text)
+        file.Close()
+    End Sub
+
+    Private Sub BtnExportNotesPlainText_Click(sender As Object, e As EventArgs) Handles BtnExportNotesPlainText.Click
+        ExportNotesViaPlainText()
+    End Sub
 End Class

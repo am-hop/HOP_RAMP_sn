@@ -1,0 +1,20 @@
+=== 2020-07-29 ===
+22:41:54 [a0bb516ffe] *CURRENT* updated tdl (user: armin tags: trunk)
+22:38:21 [1c06f38a5c] fixed the logic as to when the export button need to be enabled. (user: armin tags: trunk)
+21:46:53 [77f6d889ab] File>Export>Notes with Markdown and Notes with Plain Text complete as well as Export Notes (html) button on top of Notes Section (user: armin tags: trunk)
+19:33:22 [2441c3225f] Link/Open to OneNote is invisible for now. Add 'Help' to be used with Help.md.html (user: armin tags: trunk)
+=== 2020-07-28 ===
+22:53:05 [18b5f4a9a7] Create/Open Folder with Bid Name - path now stored in db and displays under button as well as in statusbar. refreshes with loadall() (user: armin tags: trunk)
+21:35:49 [d38ebee4bf] added usernames in dropdowns (user: armin tags: trunk)
+21:10:46 [31e62695c3] Added Filter to the bid list with working dropdown (user: armin tags: trunk)
+19:45:54 [39988b618a] fixed commit changes button. deselected SAVE after first click as it created new entries. all data saves now with multiple clicks (user: armin tags: trunk)
+18:59:03 [8683f5673f] New ticket [db0357adb6dea94c|db0357adb6] <i>commit changes does not save data when clicking more than one</i>. (user: armin)
+18:36:00 [688518786f] cleared all combo boxes (user: armin tags: trunk)
+=== 2020-07-27 ===
+22:58:37 [2f76df5b1a] visual changes to Design view under Bid List - moved filter/search items around (user: armin tags: trunk)
+22:35:50 [766428efd1] Added default Active to CboFilter and added BtnApplyFilter (user: armin tags: trunk)
+22:29:26 [c9fe28b881] fixed all checkboxes - data now shows up in database (user: armin tags: trunk)
+22:03:53 [e85688b303] changed all comboboxes to Append/ListItems (user: armin tags: trunk)
+21:49:35 [f386ee3c26] changed LeadGK combobox to append withi properties - deleted more TrafficLight variables from Update/Save/Commit functions (user: armin tags: trunk)
+21:39:52 [33043653f6] commented out all all radgreen buttons - kept as placeholders for future use (user: armin tags: trunk)
+21:30:00 [dbb23bc721] removed traffic light buttons and reclassified as advanced for future development (user: armin tags: trunk)

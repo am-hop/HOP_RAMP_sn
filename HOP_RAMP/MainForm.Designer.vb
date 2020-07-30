@@ -25,12 +25,6 @@ Partial Class MainForm
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.JournalWithMarkdownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NotesRTFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IShareToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuBidLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuCACCcontactlist = New System.Windows.Forms.ToolStripMenuItem()
@@ -51,7 +45,9 @@ Partial Class MainForm
         Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusSAVED = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusFolderPath = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GbxBidList = New System.Windows.Forms.GroupBox()
+        Me.BtnApplyFilter = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.CboFilter = New System.Windows.Forms.ComboBox()
         Me.LblLost = New System.Windows.Forms.Label()
@@ -165,10 +161,11 @@ Partial Class MainForm
         Me.LblTime = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BtnLinkOneNote = New System.Windows.Forms.Button()
-        Me.BtnExportNotes = New System.Windows.Forms.Button()
+        Me.BtnExportNotesHTML = New System.Windows.Forms.Button()
         Me.LblFolderPath = New System.Windows.Forms.Label()
         Me.LblOneNoteFolderPath = New System.Windows.Forms.Label()
-        Me.BtnApplyFilter = New System.Windows.Forms.Button()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnExportNotesPlainText = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.GbxBidList.SuspendLayout()
@@ -185,50 +182,12 @@ Partial Class MainForm
         'MenuStrip1
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.IShareToolStripMenuItem, Me.SystemsToolStripMenuItem, Me.BackupDatabaseToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IShareToolStripMenuItem, Me.SystemsToolStripMenuItem, Me.BackupDatabaseToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1884, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToolStripMenuItem, Me.SaveAllToolStripMenuItem, Me.ExitToolStripMenuItem})
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "File"
-        '
-        'ExportToolStripMenuItem
-        '
-        Me.ExportToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.JournalWithMarkdownToolStripMenuItem, Me.NotesRTFToolStripMenuItem})
-        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
-        Me.ExportToolStripMenuItem.Text = "Export"
-        '
-        'JournalWithMarkdownToolStripMenuItem
-        '
-        Me.JournalWithMarkdownToolStripMenuItem.Name = "JournalWithMarkdownToolStripMenuItem"
-        Me.JournalWithMarkdownToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.JournalWithMarkdownToolStripMenuItem.Text = "Notes with Markdown"
-        '
-        'NotesRTFToolStripMenuItem
-        '
-        Me.NotesRTFToolStripMenuItem.Name = "NotesRTFToolStripMenuItem"
-        Me.NotesRTFToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.NotesRTFToolStripMenuItem.Text = "Notes - RTF"
-        '
-        'SaveAllToolStripMenuItem
-        '
-        Me.SaveAllToolStripMenuItem.Name = "SaveAllToolStripMenuItem"
-        Me.SaveAllToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
-        Me.SaveAllToolStripMenuItem.Text = "Save All"
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'IShareToolStripMenuItem
         '
@@ -240,43 +199,43 @@ Partial Class MainForm
         'MenuBidLog
         '
         Me.MenuBidLog.Name = "MenuBidLog"
-        Me.MenuBidLog.Size = New System.Drawing.Size(172, 22)
+        Me.MenuBidLog.Size = New System.Drawing.Size(180, 22)
         Me.MenuBidLog.Text = "Bid Log"
         '
         'MenuCACCcontactlist
         '
         Me.MenuCACCcontactlist.Name = "MenuCACCcontactlist"
-        Me.MenuCACCcontactlist.Size = New System.Drawing.Size(172, 22)
+        Me.MenuCACCcontactlist.Size = New System.Drawing.Size(180, 22)
         Me.MenuCACCcontactlist.Text = "CACC Contact List"
         '
         'MenuGAF
         '
         Me.MenuGAF.Name = "MenuGAF"
-        Me.MenuGAF.Size = New System.Drawing.Size(172, 22)
+        Me.MenuGAF.Size = New System.Drawing.Size(180, 22)
         Me.MenuGAF.Text = "GAF"
         '
         'MenuHOBIT
         '
         Me.MenuHOBIT.Name = "MenuHOBIT"
-        Me.MenuHOBIT.Size = New System.Drawing.Size(172, 22)
+        Me.MenuHOBIT.Size = New System.Drawing.Size(180, 22)
         Me.MenuHOBIT.Text = "HOBIT"
         '
         'MenuRACC
         '
         Me.MenuRACC.Name = "MenuRACC"
-        Me.MenuRACC.Size = New System.Drawing.Size(172, 22)
+        Me.MenuRACC.Size = New System.Drawing.Size(180, 22)
         Me.MenuRACC.Text = "RACC"
         '
         'MenuSOP
         '
         Me.MenuSOP.Name = "MenuSOP"
-        Me.MenuSOP.Size = New System.Drawing.Size(172, 22)
+        Me.MenuSOP.Size = New System.Drawing.Size(180, 22)
         Me.MenuSOP.Text = "SOP"
         '
         'MenuUSAFRReports
         '
         Me.MenuUSAFRReports.Name = "MenuUSAFRReports"
-        Me.MenuUSAFRReports.Size = New System.Drawing.Size(172, 22)
+        Me.MenuUSAFRReports.Size = New System.Drawing.Size(180, 22)
         Me.MenuUSAFRReports.Text = "US AFR Reports"
         '
         'SystemsToolStripMenuItem
@@ -327,35 +286,44 @@ Partial Class MainForm
         'BackUpToolStripMenuItem
         '
         Me.BackUpToolStripMenuItem.Name = "BackUpToolStripMenuItem"
-        Me.BackUpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.BackUpToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BackUpToolStripMenuItem.Text = "Back up"
         '
         'DeleteResetToolStripMenuItem
         '
         Me.DeleteResetToolStripMenuItem.Name = "DeleteResetToolStripMenuItem"
-        Me.DeleteResetToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DeleteResetToolStripMenuItem.Text = "Delete/Reset"
         '
         'ExportToExcelToolStripMenuItem
         '
         Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
-        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExportToExcelToolStripMenuItem.Text = "Export to Excel"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusSAVED})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusSAVED, Me.ToolStripStatusFolderPath})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 993)
         Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
         Me.StatusStrip1.Size = New System.Drawing.Size(1884, 22)
         Me.StatusStrip1.TabIndex = 1
         Me.StatusStrip1.Text = "StatusStrip1"
         '
         'ToolStripStatusSAVED
         '
+        Me.ToolStripStatusSAVED.BorderSides = CType((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right), System.Windows.Forms.ToolStripStatusLabelBorderSides)
         Me.ToolStripStatusSAVED.Name = "ToolStripStatusSAVED"
-        Me.ToolStripStatusSAVED.Size = New System.Drawing.Size(0, 17)
+        Me.ToolStripStatusSAVED.Size = New System.Drawing.Size(4, 17)
+        '
+        'ToolStripStatusFolderPath
+        '
+        Me.ToolStripStatusFolderPath.BorderSides = CType((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right), System.Windows.Forms.ToolStripStatusLabelBorderSides)
+        Me.ToolStripStatusFolderPath.Name = "ToolStripStatusFolderPath"
+        Me.ToolStripStatusFolderPath.Size = New System.Drawing.Size(4, 17)
+        Me.ToolStripStatusFolderPath.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'GbxBidList
         '
@@ -385,6 +353,15 @@ Partial Class MainForm
         Me.GbxBidList.TabStop = False
         Me.GbxBidList.Text = "Bid List"
         '
+        'BtnApplyFilter
+        '
+        Me.BtnApplyFilter.Location = New System.Drawing.Point(178, 12)
+        Me.BtnApplyFilter.Name = "BtnApplyFilter"
+        Me.BtnApplyFilter.Size = New System.Drawing.Size(75, 23)
+        Me.BtnApplyFilter.TabIndex = 113
+        Me.BtnApplyFilter.Text = "Apply"
+        Me.BtnApplyFilter.UseVisualStyleBackColor = True
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -400,7 +377,7 @@ Partial Class MainForm
         Me.CboFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CboFilter.FormattingEnabled = True
-        Me.CboFilter.Items.AddRange(New Object() {"Active", "Inactive", "Upcoming", "All", "Red", "Green", "Yellow"})
+        Me.CboFilter.Items.AddRange(New Object() {"Active", "Inactive", "US Bids", "Upcoming", "All", "Pending Award", "Won", "Lost"})
         Me.CboFilter.Location = New System.Drawing.Point(62, 13)
         Me.CboFilter.Name = "CboFilter"
         Me.CboFilter.Size = New System.Drawing.Size(103, 21)
@@ -601,6 +578,7 @@ Partial Class MainForm
         Me.CboAnalyst.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CboAnalyst.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAnalyst.FormattingEnabled = True
+        Me.CboAnalyst.Items.AddRange(New Object() {"A Chomngarm ", "Alyson Guada ", "Angela Guasca ", "Danilo Siangko ", "Jared D'Costa ", "Jurparis Watson ", "Rodel Tarroza ", "Yuhan Fan "})
         Me.CboAnalyst.Location = New System.Drawing.Point(111, 331)
         Me.CboAnalyst.Name = "CboAnalyst"
         Me.CboAnalyst.Size = New System.Drawing.Size(194, 21)
@@ -611,6 +589,7 @@ Partial Class MainForm
         Me.CboAMGK.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CboAMGK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAMGK.FormattingEnabled = True
+        Me.CboAMGK.Items.AddRange(New Object() {"Anil Pereira ", "Armin Gahse ", "Gregory Yarmushevich ", "Hendrik Bonse ", "Janine Colon ", "John Farrand"})
         Me.CboAMGK.Location = New System.Drawing.Point(111, 305)
         Me.CboAMGK.Name = "CboAMGK"
         Me.CboAMGK.Size = New System.Drawing.Size(194, 21)
@@ -621,7 +600,7 @@ Partial Class MainForm
         Me.CboLeadGK.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CboLeadGK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboLeadGK.FormattingEnabled = True
-        Me.CboLeadGK.Items.AddRange(New Object() {"Anil P.", "Armin G.", "Hendrik B."})
+        Me.CboLeadGK.Items.AddRange(New Object() {"Anil Pereira ", "Armin Gahse ", "Gregory Yarmushevich ", "Hendrik Bonse ", "Janine Colon ", "John Farrand", "Alexandra Rizo", "Fatih Ozen", "Sandra Davila", "Xavier Bastidas"})
         Me.CboLeadGK.Location = New System.Drawing.Point(111, 279)
         Me.CboLeadGK.Name = "CboLeadGK"
         Me.CboLeadGK.Size = New System.Drawing.Size(194, 21)
@@ -1443,6 +1422,7 @@ Partial Class MainForm
         Me.BtnCreateFolderCustomerName.TabIndex = 11
         Me.BtnCreateFolderCustomerName.Text = "Create/Open Folder with Customer Name"
         Me.BtnCreateFolderCustomerName.UseVisualStyleBackColor = True
+        Me.BtnCreateFolderCustomerName.Visible = False
         '
         'BtnCommitChanges
         '
@@ -1475,21 +1455,22 @@ Partial Class MainForm
         Me.BtnLinkOneNote.TabIndex = 13
         Me.BtnLinkOneNote.Text = "Link/Open OneNote"
         Me.BtnLinkOneNote.UseVisualStyleBackColor = True
+        Me.BtnLinkOneNote.Visible = False
         '
-        'BtnExportNotes
+        'BtnExportNotesHTML
         '
-        Me.BtnExportNotes.Location = New System.Drawing.Point(1317, 86)
-        Me.BtnExportNotes.Name = "BtnExportNotes"
-        Me.BtnExportNotes.Size = New System.Drawing.Size(129, 23)
-        Me.BtnExportNotes.TabIndex = 15
-        Me.BtnExportNotes.Text = "Export Notes"
-        Me.BtnExportNotes.UseVisualStyleBackColor = True
+        Me.BtnExportNotesHTML.Location = New System.Drawing.Point(1317, 86)
+        Me.BtnExportNotesHTML.Name = "BtnExportNotesHTML"
+        Me.BtnExportNotesHTML.Size = New System.Drawing.Size(129, 23)
+        Me.BtnExportNotesHTML.TabIndex = 15
+        Me.BtnExportNotesHTML.Text = "Export Notes (html)"
+        Me.BtnExportNotesHTML.UseVisualStyleBackColor = True
         '
         'LblFolderPath
         '
         Me.LblFolderPath.AutoSize = True
         Me.LblFolderPath.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.LblFolderPath.Location = New System.Drawing.Point(438, 109)
+        Me.LblFolderPath.Location = New System.Drawing.Point(650, 109)
         Me.LblFolderPath.Name = "LblFolderPath"
         Me.LblFolderPath.Size = New System.Drawing.Size(163, 13)
         Me.LblFolderPath.TabIndex = 84
@@ -1504,15 +1485,22 @@ Partial Class MainForm
         Me.LblOneNoteFolderPath.Size = New System.Drawing.Size(196, 13)
         Me.LblOneNoteFolderPath.TabIndex = 85
         Me.LblOneNoteFolderPath.Text = "My Documents/OneNote/Customer.one"
+        Me.LblOneNoteFolderPath.Visible = False
         '
-        'BtnApplyFilter
+        'HelpToolStripMenuItem
         '
-        Me.BtnApplyFilter.Location = New System.Drawing.Point(178, 12)
-        Me.BtnApplyFilter.Name = "BtnApplyFilter"
-        Me.BtnApplyFilter.Size = New System.Drawing.Size(75, 23)
-        Me.BtnApplyFilter.TabIndex = 113
-        Me.BtnApplyFilter.Text = "Apply"
-        Me.BtnApplyFilter.UseVisualStyleBackColor = True
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'BtnExportNotesPlainText
+        '
+        Me.BtnExportNotesPlainText.Location = New System.Drawing.Point(1469, 85)
+        Me.BtnExportNotesPlainText.Name = "BtnExportNotesPlainText"
+        Me.BtnExportNotesPlainText.Size = New System.Drawing.Size(129, 23)
+        Me.BtnExportNotesPlainText.TabIndex = 86
+        Me.BtnExportNotesPlainText.Text = "Export Notes (text)"
+        Me.BtnExportNotesPlainText.UseVisualStyleBackColor = True
         '
         'MainForm
         '
@@ -1520,9 +1508,10 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1884, 1015)
+        Me.Controls.Add(Me.BtnExportNotesPlainText)
         Me.Controls.Add(Me.LblOneNoteFolderPath)
         Me.Controls.Add(Me.LblFolderPath)
-        Me.Controls.Add(Me.BtnExportNotes)
+        Me.Controls.Add(Me.BtnExportNotesHTML)
         Me.Controls.Add(Me.BtnLinkOneNote)
         Me.Controls.Add(Me.LblTime)
         Me.Controls.Add(Me.BtnCommitChanges)
@@ -1698,13 +1687,7 @@ Partial Class MainForm
     Friend WithEvents CboFilter As ComboBox
     Friend WithEvents BtnLinkOneNote As Button
     Friend WithEvents BackupDatabaseToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BtnExportNotes As Button
-    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents JournalWithMarkdownToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents NotesRTFToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SaveAllToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnExportNotesHTML As Button
     Friend WithEvents BackUpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteResetToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportToExcelToolStripMenuItem As ToolStripMenuItem
@@ -1716,4 +1699,7 @@ Partial Class MainForm
     Friend WithEvents LblFolderPath As Label
     Friend WithEvents LblOneNoteFolderPath As Label
     Friend WithEvents BtnApplyFilter As Button
+    Friend WithEvents ToolStripStatusFolderPath As ToolStripStatusLabel
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnExportNotesPlainText As Button
 End Class
