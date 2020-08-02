@@ -43,6 +43,7 @@ Partial Class MainForm
         Me.BackUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusSAVED = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusFolderPath = New System.Windows.Forms.ToolStripStatusLabel()
@@ -164,7 +165,6 @@ Partial Class MainForm
         Me.BtnExportNotesHTML = New System.Windows.Forms.Button()
         Me.LblFolderPath = New System.Windows.Forms.Label()
         Me.LblOneNoteFolderPath = New System.Windows.Forms.Label()
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BtnExportNotesPlainText = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -199,43 +199,43 @@ Partial Class MainForm
         'MenuBidLog
         '
         Me.MenuBidLog.Name = "MenuBidLog"
-        Me.MenuBidLog.Size = New System.Drawing.Size(180, 22)
+        Me.MenuBidLog.Size = New System.Drawing.Size(172, 22)
         Me.MenuBidLog.Text = "Bid Log"
         '
         'MenuCACCcontactlist
         '
         Me.MenuCACCcontactlist.Name = "MenuCACCcontactlist"
-        Me.MenuCACCcontactlist.Size = New System.Drawing.Size(180, 22)
+        Me.MenuCACCcontactlist.Size = New System.Drawing.Size(172, 22)
         Me.MenuCACCcontactlist.Text = "CACC Contact List"
         '
         'MenuGAF
         '
         Me.MenuGAF.Name = "MenuGAF"
-        Me.MenuGAF.Size = New System.Drawing.Size(180, 22)
+        Me.MenuGAF.Size = New System.Drawing.Size(172, 22)
         Me.MenuGAF.Text = "GAF"
         '
         'MenuHOBIT
         '
         Me.MenuHOBIT.Name = "MenuHOBIT"
-        Me.MenuHOBIT.Size = New System.Drawing.Size(180, 22)
+        Me.MenuHOBIT.Size = New System.Drawing.Size(172, 22)
         Me.MenuHOBIT.Text = "HOBIT"
         '
         'MenuRACC
         '
         Me.MenuRACC.Name = "MenuRACC"
-        Me.MenuRACC.Size = New System.Drawing.Size(180, 22)
+        Me.MenuRACC.Size = New System.Drawing.Size(172, 22)
         Me.MenuRACC.Text = "RACC"
         '
         'MenuSOP
         '
         Me.MenuSOP.Name = "MenuSOP"
-        Me.MenuSOP.Size = New System.Drawing.Size(180, 22)
+        Me.MenuSOP.Size = New System.Drawing.Size(172, 22)
         Me.MenuSOP.Text = "SOP"
         '
         'MenuUSAFRReports
         '
         Me.MenuUSAFRReports.Name = "MenuUSAFRReports"
-        Me.MenuUSAFRReports.Size = New System.Drawing.Size(180, 22)
+        Me.MenuUSAFRReports.Size = New System.Drawing.Size(172, 22)
         Me.MenuUSAFRReports.Text = "US AFR Reports"
         '
         'SystemsToolStripMenuItem
@@ -286,20 +286,26 @@ Partial Class MainForm
         'BackUpToolStripMenuItem
         '
         Me.BackUpToolStripMenuItem.Name = "BackUpToolStripMenuItem"
-        Me.BackUpToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BackUpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.BackUpToolStripMenuItem.Text = "Back up"
         '
         'DeleteResetToolStripMenuItem
         '
         Me.DeleteResetToolStripMenuItem.Name = "DeleteResetToolStripMenuItem"
-        Me.DeleteResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeleteResetToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteResetToolStripMenuItem.Text = "Delete/Reset"
         '
         'ExportToExcelToolStripMenuItem
         '
         Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
-        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExportToExcelToolStripMenuItem.Text = "Export to Excel"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
         '
         'StatusStrip1
         '
@@ -1224,7 +1230,7 @@ Partial Class MainForm
         Me.GbxStrategy.Controls.Add(Me.RtbStrategy)
         Me.GbxStrategy.Location = New System.Drawing.Point(650, 124)
         Me.GbxStrategy.Name = "GbxStrategy"
-        Me.GbxStrategy.Size = New System.Drawing.Size(261, 227)
+        Me.GbxStrategy.Size = New System.Drawing.Size(534, 132)
         Me.GbxStrategy.TabIndex = 3
         Me.GbxStrategy.TabStop = False
         Me.GbxStrategy.Text = "Strategy / Approvals / Directives"
@@ -1232,19 +1238,20 @@ Partial Class MainForm
         'RtbStrategy
         '
         Me.RtbStrategy.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RtbStrategy.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RtbStrategy.Location = New System.Drawing.Point(3, 16)
         Me.RtbStrategy.Name = "RtbStrategy"
         Me.RtbStrategy.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.RtbStrategy.Size = New System.Drawing.Size(255, 208)
+        Me.RtbStrategy.Size = New System.Drawing.Size(528, 113)
         Me.RtbStrategy.TabIndex = 0
         Me.RtbStrategy.Text = ""
         '
         'GbxQA
         '
         Me.GbxQA.Controls.Add(Me.RtbQA)
-        Me.GbxQA.Location = New System.Drawing.Point(914, 124)
+        Me.GbxQA.Location = New System.Drawing.Point(650, 256)
         Me.GbxQA.Name = "GbxQA"
-        Me.GbxQA.Size = New System.Drawing.Size(261, 227)
+        Me.GbxQA.Size = New System.Drawing.Size(534, 198)
         Me.GbxQA.TabIndex = 4
         Me.GbxQA.TabStop = False
         Me.GbxQA.Text = "Q&&A"
@@ -1252,19 +1259,20 @@ Partial Class MainForm
         'RtbQA
         '
         Me.RtbQA.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RtbQA.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RtbQA.Location = New System.Drawing.Point(3, 16)
         Me.RtbQA.Name = "RtbQA"
         Me.RtbQA.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.RtbQA.Size = New System.Drawing.Size(255, 208)
+        Me.RtbQA.Size = New System.Drawing.Size(528, 179)
         Me.RtbQA.TabIndex = 0
         Me.RtbQA.Text = ""
         '
         'GbxToDo
         '
         Me.GbxToDo.Controls.Add(Me.RtbToDo)
-        Me.GbxToDo.Location = New System.Drawing.Point(653, 358)
+        Me.GbxToDo.Location = New System.Drawing.Point(650, 454)
         Me.GbxToDo.Name = "GbxToDo"
-        Me.GbxToDo.Size = New System.Drawing.Size(519, 308)
+        Me.GbxToDo.Size = New System.Drawing.Size(534, 214)
         Me.GbxToDo.TabIndex = 5
         Me.GbxToDo.TabStop = False
         Me.GbxToDo.Text = "To Do"
@@ -1272,10 +1280,11 @@ Partial Class MainForm
         'RtbToDo
         '
         Me.RtbToDo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RtbToDo.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RtbToDo.Location = New System.Drawing.Point(3, 16)
         Me.RtbToDo.Name = "RtbToDo"
         Me.RtbToDo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.RtbToDo.Size = New System.Drawing.Size(513, 289)
+        Me.RtbToDo.Size = New System.Drawing.Size(528, 195)
         Me.RtbToDo.TabIndex = 0
         Me.RtbToDo.Text = ""
         '
@@ -1292,6 +1301,7 @@ Partial Class MainForm
         'RtbJournal
         '
         Me.RtbJournal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RtbJournal.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RtbJournal.Location = New System.Drawing.Point(3, 16)
         Me.RtbJournal.Name = "RtbJournal"
         Me.RtbJournal.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
@@ -1301,40 +1311,44 @@ Partial Class MainForm
         '
         'BtnSave
         '
+        Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.Location = New System.Drawing.Point(18, 86)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 23)
         Me.BtnSave.TabIndex = 7
         Me.BtnSave.Text = "&Save/Clear"
-        Me.BtnSave.UseVisualStyleBackColor = True
+        Me.BtnSave.UseVisualStyleBackColor = False
         '
         'BtnUpdate
         '
+        Me.BtnUpdate.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnUpdate.Enabled = False
         Me.BtnUpdate.Location = New System.Drawing.Point(99, 86)
         Me.BtnUpdate.Name = "BtnUpdate"
         Me.BtnUpdate.Size = New System.Drawing.Size(84, 23)
         Me.BtnUpdate.TabIndex = 8
         Me.BtnUpdate.Text = "&Update/Clear"
-        Me.BtnUpdate.UseVisualStyleBackColor = True
+        Me.BtnUpdate.UseVisualStyleBackColor = False
         '
         'BtnDelete
         '
+        Me.BtnDelete.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnDelete.Location = New System.Drawing.Point(189, 86)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(75, 23)
         Me.BtnDelete.TabIndex = 9
         Me.BtnDelete.Text = "Delete"
-        Me.BtnDelete.UseVisualStyleBackColor = True
+        Me.BtnDelete.UseVisualStyleBackColor = False
         '
         'BtnClear
         '
+        Me.BtnClear.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnClear.Location = New System.Drawing.Point(270, 86)
         Me.BtnClear.Name = "BtnClear"
         Me.BtnClear.Size = New System.Drawing.Size(75, 23)
         Me.BtnClear.TabIndex = 10
         Me.BtnClear.Text = "&Clear"
-        Me.BtnClear.UseVisualStyleBackColor = True
+        Me.BtnClear.UseVisualStyleBackColor = False
         '
         'PicRAMPLogo
         '
@@ -1407,31 +1421,34 @@ Partial Class MainForm
         '
         'BtnCreateFolderBidName
         '
+        Me.BtnCreateFolderBidName.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnCreateFolderBidName.Location = New System.Drawing.Point(650, 86)
         Me.BtnCreateFolderBidName.Name = "BtnCreateFolderBidName"
         Me.BtnCreateFolderBidName.Size = New System.Drawing.Size(182, 23)
         Me.BtnCreateFolderBidName.TabIndex = 12
         Me.BtnCreateFolderBidName.Text = "Create/Open Folder with Bid Name"
-        Me.BtnCreateFolderBidName.UseVisualStyleBackColor = True
+        Me.BtnCreateFolderBidName.UseVisualStyleBackColor = False
         '
         'BtnCreateFolderCustomerName
         '
+        Me.BtnCreateFolderCustomerName.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnCreateFolderCustomerName.Location = New System.Drawing.Point(433, 86)
         Me.BtnCreateFolderCustomerName.Name = "BtnCreateFolderCustomerName"
         Me.BtnCreateFolderCustomerName.Size = New System.Drawing.Size(211, 23)
         Me.BtnCreateFolderCustomerName.TabIndex = 11
         Me.BtnCreateFolderCustomerName.Text = "Create/Open Folder with Customer Name"
-        Me.BtnCreateFolderCustomerName.UseVisualStyleBackColor = True
+        Me.BtnCreateFolderCustomerName.UseVisualStyleBackColor = False
         Me.BtnCreateFolderCustomerName.Visible = False
         '
         'BtnCommitChanges
         '
+        Me.BtnCommitChanges.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnCommitChanges.Location = New System.Drawing.Point(1190, 85)
         Me.BtnCommitChanges.Name = "BtnCommitChanges"
         Me.BtnCommitChanges.Size = New System.Drawing.Size(111, 23)
         Me.BtnCommitChanges.TabIndex = 14
         Me.BtnCommitChanges.Text = "Commit Changes"
-        Me.BtnCommitChanges.UseVisualStyleBackColor = True
+        Me.BtnCommitChanges.UseVisualStyleBackColor = False
         '
         'LblTime
         '
@@ -1449,22 +1466,24 @@ Partial Class MainForm
         '
         'BtnLinkOneNote
         '
+        Me.BtnLinkOneNote.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnLinkOneNote.Location = New System.Drawing.Point(856, 86)
         Me.BtnLinkOneNote.Name = "BtnLinkOneNote"
         Me.BtnLinkOneNote.Size = New System.Drawing.Size(129, 23)
         Me.BtnLinkOneNote.TabIndex = 13
         Me.BtnLinkOneNote.Text = "Link/Open OneNote"
-        Me.BtnLinkOneNote.UseVisualStyleBackColor = True
+        Me.BtnLinkOneNote.UseVisualStyleBackColor = False
         Me.BtnLinkOneNote.Visible = False
         '
         'BtnExportNotesHTML
         '
+        Me.BtnExportNotesHTML.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnExportNotesHTML.Location = New System.Drawing.Point(1317, 86)
         Me.BtnExportNotesHTML.Name = "BtnExportNotesHTML"
         Me.BtnExportNotesHTML.Size = New System.Drawing.Size(129, 23)
         Me.BtnExportNotesHTML.TabIndex = 15
         Me.BtnExportNotesHTML.Text = "Export Notes (html)"
-        Me.BtnExportNotesHTML.UseVisualStyleBackColor = True
+        Me.BtnExportNotesHTML.UseVisualStyleBackColor = False
         '
         'LblFolderPath
         '
@@ -1472,9 +1491,8 @@ Partial Class MainForm
         Me.LblFolderPath.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.LblFolderPath.Location = New System.Drawing.Point(650, 109)
         Me.LblFolderPath.Name = "LblFolderPath"
-        Me.LblFolderPath.Size = New System.Drawing.Size(163, 13)
+        Me.LblFolderPath.Size = New System.Drawing.Size(0, 13)
         Me.LblFolderPath.TabIndex = 84
-        Me.LblFolderPath.Text = "My Documents/Customer Name/"
         '
         'LblOneNoteFolderPath
         '
@@ -1487,20 +1505,15 @@ Partial Class MainForm
         Me.LblOneNoteFolderPath.Text = "My Documents/OneNote/Customer.one"
         Me.LblOneNoteFolderPath.Visible = False
         '
-        'HelpToolStripMenuItem
-        '
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "Help"
-        '
         'BtnExportNotesPlainText
         '
+        Me.BtnExportNotesPlainText.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnExportNotesPlainText.Location = New System.Drawing.Point(1469, 85)
         Me.BtnExportNotesPlainText.Name = "BtnExportNotesPlainText"
         Me.BtnExportNotesPlainText.Size = New System.Drawing.Size(129, 23)
         Me.BtnExportNotesPlainText.TabIndex = 86
         Me.BtnExportNotesPlainText.Text = "Export Notes (text)"
-        Me.BtnExportNotesPlainText.UseVisualStyleBackColor = True
+        Me.BtnExportNotesPlainText.UseVisualStyleBackColor = False
         '
         'MainForm
         '

@@ -12,7 +12,7 @@ Public Class MainForm
             .View = View.Details
             .Columns.Add("No")                  '1
             .Columns.Add("US")                  '2
-            .Columns.Add("Act.")              '3
+            .Columns.Add("Act.")                '3
             .Columns.Add("Bid ID")              '4
             .Columns.Add("Customer")            '5
             .Columns.Add("Full Bid Name")       '6
@@ -720,14 +720,19 @@ Public Class MainForm
     End Sub
 
     Private Sub BtnExportNotes_Click(sender As Object, e As EventArgs) Handles BtnExportNotesHTML.Click
-        ExportNotesViaMarkdown()
+        If LblFolderPath.Text = "" Then
+            MessageBox.Show("Please create a folder first")
+        Else
+            ExportNotesViaMarkdown()
+        End If
+
     End Sub
 
 
     Private Sub ExportNotesViaMarkdown()
         Dim file As StreamWriter
         Dim fileheader As String = "<meta charset=""utf-8"" emacsmode=""-*- markdown -*-""><link rel=""stylesheet"" href=""https://casual-effects.com/markdeep/latest/journal.css?"">"
-        Dim filefooter As String = "<style class=""fallback"">body{visibility:hidden}</style><script> markdeepOptions = {tocStyle:'short'};</script><!-- Markdeep: --><script src=""https://casual-effects.com/markdeep/latest/markdeep.min.js?"" charset=""utf-8""></script>"
+        Dim filefooter As String = "<style class=""fallback"">body{visibility:hidden}</style><script> markdeepOptions = {tocStyle:'long'};</script><!-- Markdeep: --><script src=""https://casual-effects.com/markdeep/latest/markdeep.min.js?"" charset=""utf-8""></script>"
         Dim path = LblFolderPath.Text & "\"
         Dim markdeep = path & TxtCustomer.Text & "_" & Format(Now, "yyyy-MM-dd_hhmmss") & ".md.html"
         file = My.Computer.FileSystem.OpenTextFileWriter(markdeep, True)
@@ -736,10 +741,18 @@ Public Class MainForm
         file.WriteLine(vbTab & vbTab & "**" & TxtCustomer.Text & "**")
         file.WriteLine(vbTab & vbTab & FormatDateTime(Now))
         file.WriteLine(vbCrLf)
-        file.WriteLine("Current Project Updates")
+        'file.WriteLine("Current Project Updates")
         file.WriteLine(vbCrLf)
         file.WriteLine(RtbJournal.Text)
         file.WriteLine(vbCrLf)
+        file.WriteLine("# To Do List:")
+        file.WriteLine(RtbToDo.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine("# Q&A")
+        file.WriteLine(RtbQA.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine("# Strategy/Directives/Approvals")
+        file.WriteLine(RtbStrategy.Text)
         file.WriteLine(filefooter)
         file.Close()
     End Sub
@@ -750,6 +763,18 @@ Public Class MainForm
         Dim plaintext = path & TxtCustomer.Text & "_" & Format(Now, "yyyy-MM-dd_hhmmss") & ".txt"
         file = My.Computer.FileSystem.OpenTextFileWriter(plaintext, True)
         file.WriteLine(RtbJournal.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine("To Do List:")
+        file.WriteLine("===========")
+        file.WriteLine(RtbToDo.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine("Q&A:")
+        file.WriteLine("====")
+        file.WriteLine(RtbQA.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine("Strategy/Directives/Approvals:")
+        file.WriteLine("==============================")
+        file.WriteLine(RtbStrategy.Text)
         file.Close()
     End Sub
 
