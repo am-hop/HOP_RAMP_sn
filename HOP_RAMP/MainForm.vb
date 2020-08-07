@@ -44,7 +44,6 @@ Public Class MainForm
         BtnCreateFolderBidName.Enabled = True
         BtnCommitChanges.Enabled = True
         BtnExportNotesHTML.Enabled = True
-        BtnExportNotesPlainText.Enabled = True
         If LvwBidList.SelectedItems.Count > 0 Then
             OpenCon()
             Try
@@ -100,6 +99,18 @@ Public Class MainForm
                     LblFolderPath.Text = dr.Item(44).ToString
                     ToolStripStatusFolderPath.Text = dr.Item(44).ToString
                     LblOneNoteFolderPath.Text = dr.Item(45).ToString
+                    ChkPreBid.Checked = dr.Item(46).ToString
+                    ChkIMPAT.Checked = dr.Item(47).ToString
+                    ChkHFB.Checked = dr.Item(48).ToString
+                    CboHFBFrequency.Text = dr.Item(49).ToString
+                    TxtWeekStart.Text = dr.Item(50).ToString
+                    TxtWeekEnd.Text = dr.Item(51).ToString
+                    TxtMonday.Text = dr.Item(52).ToString
+                    TxtTuesday.Text = dr.Item(53).ToString
+                    TxtWednesday.Text = dr.Item(54).ToString
+                    TxtThursday.Text = dr.Item(55).ToString
+                    TxtFriday.Text = dr.Item(56).ToString
+
                 End While
             Catch ex As Exception
                 MessageBox.Show(ex.Message & ", ListView function", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -180,7 +191,18 @@ Public Class MainForm
                 myitems.SubItems.Add(42).Text = dr.Item(42).ToString
                 'myitems.SubItems.Add(43).Text = dr.Item(43).ToString 'TrafficLight
                 myitems.SubItems.Add(44).Text = dr.Item(44).ToString
-                myitems.SubItems.Add(44).Text = dr.Item(45).ToString
+                myitems.SubItems.Add(45).Text = dr.Item(45).ToString
+                myitems.SubItems.Add(46).Text = dr.Item(46).ToString
+                myitems.SubItems.Add(47).Text = dr.Item(47).ToString
+                myitems.SubItems.Add(48).Text = dr.Item(48).ToString
+                myitems.SubItems.Add(49).Text = dr.Item(49).ToString
+                myitems.SubItems.Add(50).Text = dr.Item(50).ToString
+                myitems.SubItems.Add(51).Text = dr.Item(51).ToString
+                myitems.SubItems.Add(52).Text = dr.Item(52).ToString
+                myitems.SubItems.Add(53).Text = dr.Item(53).ToString
+                myitems.SubItems.Add(54).Text = dr.Item(54).ToString
+                myitems.SubItems.Add(55).Text = dr.Item(55).ToString
+                myitems.SubItems.Add(56).Text = dr.Item(56).ToString
             End While
             LvwBidList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
         Catch ex As Exception
@@ -190,7 +212,6 @@ Public Class MainForm
         BtnCreateFolderBidName.Enabled = False
         BtnCommitChanges.Enabled = False
         BtnExportNotesHTML.Enabled = False
-        BtnExportNotesPlainText.Enabled = False
         CountActiveBids()
         CountUpcoming()
         CountPendingAward()
@@ -217,10 +238,13 @@ Public Class MainForm
         BtnCreateFolderBidName.Enabled = False
         BtnCommitChanges.Enabled = False
         BtnExportNotesHTML.Enabled = False
-        BtnExportNotesPlainText.Enabled = False
         ChkBidActive.Checked = True
         ChkStandardFuel.Checked = False
         ChkUSBid.Checked = False
+        ChkUpcoming.Checked = False
+        ChkPreBid.Checked = False
+        ChkIMPAT.Checked = False
+        ChkHFB.Checked = False
         LvwBidList.Items.Clear()
         TxtSearch.Text = String.Empty
         LblCustomerHeader.Text = String.Empty
@@ -231,8 +255,10 @@ Public Class MainForm
         CboAnalyst.Text = String.Empty
         CboAwardStatus.Text = String.Empty
         CboLeadRegion.Text = String.Empty
+        CboHFBFrequency.Text = String.Empty
         LblFolderPath.Text = String.Empty
         LblOneNoteFolderPath.Text = String.Empty
+
         LoadAllBids()
     End Sub
 
@@ -243,12 +269,14 @@ Public Class MainForm
                     AwardStatus,LeadRegion,LeadGK,AMGK,Analyst,BidAssigned,BidReceived,PortLaunch,R1_Launch,R1_InternalDue,
                     R1_CustomerDue,	R1_Submitted,R2_Received,R2_Launch,R2_InternalDue,R2_CustomerDue,R2_Submitted,
                     R3_Received,R3_Launch,R3_InternalDue,R3_CustomerDue,R3_Submitted,RateValidity,DimFactor,StandardFuel,
-                    PickupDay,Strategy,QA,ToDo,Journal,Upcoming,FolderPath,OneNoteFolderPath) VALUES 
+                    PickupDay,Strategy,QA,ToDo,Journal,Upcoming,FolderPath,OneNoteFolderPath,PreBid,IMPAT,HFB,HFB_Frequency,
+                    WeekStart,WeekEnd,HFB_MON,HFB_TUE,HFB_WED,HFB_THU,HFB_FRI) VALUES 
                     (@USBid,@BidActive,@BidID,@Customer,@BidName,@BMT,@CO,@Tier,@NoOfRounds,@Status,@PercentComplete,@AwardStatus,
                     @LeadRegion,@LeadGK,@AMGK,@Analyst,@BidAssigned,@BidReceived,@PortLaunch,@R1_Launch,@R1_InternalDue,@R1_CustomerDue,
                     @R1_Submitted,@R2_Received,@R2_Launch,@R2_InternalDue,@R2_CustomerDue,@R2_Submitted,@R3_Received,@R3_Launch,
                     @R3_InternalDue,@R3_CustomerDue,@R3_Submitted,@RateValidity,@DimFactor,@StandardFuel,@PickupDay,@Strategy,
-                    @QA,@ToDo,@Journal,@Upcoming,@FolderPath,@OneNoteFolderPath)"
+                    @QA,@ToDo,@Journal,@Upcoming,@FolderPath,@OneNoteFolderPath,@PreBid,@IMPAT,@HFB,@HFB_Frequency,@WeekStart,
+                    @WeekEnd,@HFB_MON,@HFB_TUE,@HFB_WED,@HFB_THU,@HFB_FRI)"
             cmd = New SQLiteCommand(query, con)
             With cmd
                 .Parameters.AddWithValue("@USBid", ChkUSBid.Checked)
@@ -296,6 +324,17 @@ Public Class MainForm
                 '.Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
                 .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
                 .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
+                .Parameters.AddWithValue("@PreBid", ChkPreBid.Checked)
+                .Parameters.AddWithValue("@IMPAT", ChkIMPAT.Checked)
+                .Parameters.AddWithValue("@HFB", ChkHFB.Checked)
+                .Parameters.AddWithValue("@HFB_Frequency", CboHFBFrequency.Text.Trim)
+                .Parameters.AddWithValue("@WeekStart", TxtWeekStart.Text.Trim)
+                .Parameters.AddWithValue("@WeekEnd", TxtWeekEnd.Text.Trim)
+                .Parameters.AddWithValue("@HFB_MON", TxtMonday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_TUE", TxtTuesday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_WED", TxtWednesday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_THU", TxtThursday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_FRI", TxtFriday.Text.Trim)
                 .ExecuteNonQuery()
             End With
             Dim SavedMessage As String = "New Bid has been successfully added" & " [" & Now & "]"
@@ -323,7 +362,8 @@ Public Class MainForm
                 DimFactor=@DimFactor,
                 StandardFuel=@StandardFuel,
                 PickupDay=@PickupDay,
-                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
+                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath,
+                PreBid=@PreBid,IMPAT=@IMPAT,HFB=@HFB,HFB_Frequency=@HFB_Frequency,WeekStart=@WeekStart,WeekEnd=@WeekEnd,HFB_MON=@HFB_MON,HFB_TUE=@HFB_TUE,HFB_WED=@HFB_WED,HFB_THU=@HFB_THU,HFB_FRI=@HFB_FRI
                     WHERE ID= '" & LblID.Text & "'"
             cmd = New SQLiteCommand(query, con)
             With cmd
@@ -372,6 +412,17 @@ Public Class MainForm
                 '.Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
                 .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
                 .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
+                .Parameters.AddWithValue("@PreBid", ChkPreBid.Checked)
+                .Parameters.AddWithValue("@IMPAT", ChkIMPAT.Checked)
+                .Parameters.AddWithValue("@HFB", ChkHFB.Checked)
+                .Parameters.AddWithValue("@HFB_Frequency", CboHFBFrequency.Text.Trim)
+                .Parameters.AddWithValue("@WeekStart", TxtWeekStart.Text.Trim)
+                .Parameters.AddWithValue("@WeekEnd", TxtWeekEnd.Text.Trim)
+                .Parameters.AddWithValue("@HFB_MON", TxtMonday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_TUE", TxtTuesday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_WED", TxtWednesday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_THU", TxtThursday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_FRI", TxtFriday.Text.Trim)
                 .ExecuteNonQuery()
             End With
             Dim UpdatedMessage As String = "Bid has been successfully updated" & " [" & Now & "]"
@@ -476,7 +527,18 @@ Public Class MainForm
                 myitems.SubItems.Add(42).Text = dr.Item(42).ToString
                 'myitems.SubItems.Add(43).Text = dr.Item(43).ToString
                 myitems.SubItems.Add(44).Text = dr.Item(44).ToString
-                myitems.SubItems.Add(44).Text = dr.Item(45).ToString
+                myitems.SubItems.Add(45).Text = dr.Item(45).ToString
+                myitems.SubItems.Add(46).Text = dr.Item(46).ToString
+                myitems.SubItems.Add(47).Text = dr.Item(47).ToString
+                myitems.SubItems.Add(48).Text = dr.Item(48).ToString
+                myitems.SubItems.Add(49).Text = dr.Item(49).ToString
+                myitems.SubItems.Add(50).Text = dr.Item(50).ToString
+                myitems.SubItems.Add(51).Text = dr.Item(51).ToString
+                myitems.SubItems.Add(52).Text = dr.Item(52).ToString
+                myitems.SubItems.Add(53).Text = dr.Item(53).ToString
+                myitems.SubItems.Add(54).Text = dr.Item(54).ToString
+                myitems.SubItems.Add(55).Text = dr.Item(55).ToString
+                myitems.SubItems.Add(56).Text = dr.Item(56).ToString
             End While
             LblCount.Text = LvwBidList.Items.Count & " record(s) found!" & " [" & Now & "]"
         Catch ex As Exception
@@ -526,7 +588,8 @@ Public Class MainForm
                 DimFactor=@DimFactor,
                 StandardFuel=@StandardFuel,
                 PickupDay=@PickupDay,
-                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath 
+                Strategy=@Strategy,QA=@QA,ToDo=@ToDo,Journal=@Journal,Upcoming=@Upcoming,FolderPath=@FolderPath,OneNoteFolderPath=@OneNoteFolderPath,
+                PreBid=@PreBid,IMPAT=@IMPAT,HFB=@HFB,HFB_Frequency=@HFB_Frequency,WeekStart=@WeekStart,WeekEnd=@WeekEnd,HFB_MON=@HFB_MON,HFB_TUE=@HFB_TUE,HFB_WED=@HFB_WED,HFB_THU=@HFB_THU,HFB_FRI=@HFB_FRI
                     WHERE ID= '" & LblID.Text & "'"
             cmd = New SQLiteCommand(query, con)
             With cmd
@@ -575,6 +638,17 @@ Public Class MainForm
                 '.Parameters.AddWithValue("@TrafficLight", RadGreen.Checked.ToString)
                 .Parameters.AddWithValue("@FolderPath", LblFolderPath.Text.Trim)
                 .Parameters.AddWithValue("@OneNoteFolderPath", LblOneNoteFolderPath.Text.Trim)
+                .Parameters.AddWithValue("@PreBid", ChkPreBid.Checked)
+                .Parameters.AddWithValue("@IMPAT", ChkIMPAT.Checked)
+                .Parameters.AddWithValue("@HFB", ChkHFB.Checked)
+                .Parameters.AddWithValue("@HFB_Frequency", CboHFBFrequency.Text.Trim)
+                .Parameters.AddWithValue("@WeekStart", TxtWeekStart.Text.Trim)
+                .Parameters.AddWithValue("@WeekEnd", TxtWeekEnd.Text.Trim)
+                .Parameters.AddWithValue("@HFB_MON", TxtMonday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_TUE", TxtTuesday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_WED", TxtWednesday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_THU", TxtThursday.Text.Trim)
+                .Parameters.AddWithValue("@HFB_FRI", TxtFriday.Text.Trim)
                 .ExecuteNonQuery()
             End With
             Dim UpdatedMessage As String = "Changes have been successfully committed" & " [" & Now & "]"
@@ -741,7 +815,8 @@ Public Class MainForm
         file.WriteLine(vbTab & vbTab & "**" & TxtCustomer.Text & "**")
         file.WriteLine(vbTab & vbTab & FormatDateTime(Now))
         file.WriteLine(vbCrLf)
-        'file.WriteLine("Current Project Updates")
+        file.WriteLine("Bid Status: " & TxtStatus.Text & vbCrLf)
+        file.WriteLine("Complete: " & TxtPercentComplete.Text & "%")
         file.WriteLine(vbCrLf)
         file.WriteLine(RtbJournal.Text)
         file.WriteLine(vbCrLf)
@@ -753,32 +828,20 @@ Public Class MainForm
         file.WriteLine(vbCrLf)
         file.WriteLine("# Strategy/Directives/Approvals")
         file.WriteLine(RtbStrategy.Text)
+        file.WriteLine(vbCrLf)
+        file.WriteLine("# HFB")
+        file.WriteLine("* FREQUENCY: " & CboHFBFrequency.Text)
+        file.WriteLine("* WEEK START: " & TxtWeekStart.Text)
+        file.WriteLine("* WEEK END: " & TxtWeekEnd.Text)
+        file.WriteLine("* MON:  " & TxtMonday.Text)
+        file.WriteLine("* TUE:  " & TxtTuesday.Text)
+        file.WriteLine("* WED:  " & TxtWednesday.Text)
+        file.WriteLine("* THU:  " & TxtThursday.Text)
+        file.WriteLine("* FRI:  " & TxtFriday.Text)
+        file.WriteLine(vbCrLf)
         file.WriteLine(filefooter)
         file.Close()
     End Sub
 
-    Private Sub ExportNotesViaPlainText()
-        Dim file As StreamWriter
-        Dim path = LblFolderPath.Text & "\"
-        Dim plaintext = path & TxtCustomer.Text & "_" & Format(Now, "yyyy-MM-dd_hhmmss") & ".txt"
-        file = My.Computer.FileSystem.OpenTextFileWriter(plaintext, True)
-        file.WriteLine(RtbJournal.Text)
-        file.WriteLine(vbCrLf)
-        file.WriteLine("To Do List:")
-        file.WriteLine("===========")
-        file.WriteLine(RtbToDo.Text)
-        file.WriteLine(vbCrLf)
-        file.WriteLine("Q&A:")
-        file.WriteLine("====")
-        file.WriteLine(RtbQA.Text)
-        file.WriteLine(vbCrLf)
-        file.WriteLine("Strategy/Directives/Approvals:")
-        file.WriteLine("==============================")
-        file.WriteLine(RtbStrategy.Text)
-        file.Close()
-    End Sub
 
-    Private Sub BtnExportNotesPlainText_Click(sender As Object, e As EventArgs) Handles BtnExportNotesPlainText.Click
-        ExportNotesViaPlainText()
-    End Sub
 End Class

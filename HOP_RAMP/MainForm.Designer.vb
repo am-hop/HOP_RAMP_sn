@@ -69,11 +69,7 @@ Partial Class MainForm
         Me.CboAMGK = New System.Windows.Forms.ComboBox()
         Me.CboLeadGK = New System.Windows.Forms.ComboBox()
         Me.CboLeadRegion = New System.Windows.Forms.ComboBox()
-        Me.ChkUpcoming = New System.Windows.Forms.CheckBox()
-        Me.ChkUSBid = New System.Windows.Forms.CheckBox()
-        Me.LblID = New System.Windows.Forms.Label()
         Me.ChkStandardFuel = New System.Windows.Forms.CheckBox()
-        Me.ChkBidActive = New System.Windows.Forms.CheckBox()
         Me.TxtPickupDay = New System.Windows.Forms.TextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.TxtDimFactor = New System.Windows.Forms.TextBox()
@@ -82,10 +78,6 @@ Partial Class MainForm
         Me.Label33 = New System.Windows.Forms.Label()
         Me.TxtRateValidity = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.TxtBidReceived = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.TxtBidAssigned = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -102,6 +94,14 @@ Partial Class MainForm
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TxtBidID = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.ChkUpcoming = New System.Windows.Forms.CheckBox()
+        Me.ChkUSBid = New System.Windows.Forms.CheckBox()
+        Me.LblID = New System.Windows.Forms.Label()
+        Me.ChkBidActive = New System.Windows.Forms.CheckBox()
+        Me.TxtBidReceived = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TxtBidAssigned = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.TxtPortLaunch = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -152,6 +152,21 @@ Partial Class MainForm
         Me.BtnClear = New System.Windows.Forms.Button()
         Me.PicRAMPLogo = New System.Windows.Forms.PictureBox()
         Me.GbxStatus = New System.Windows.Forms.GroupBox()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.TxtWeekEnd = New System.Windows.Forms.TextBox()
+        Me.TxtWeekStart = New System.Windows.Forms.TextBox()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.TxtFriday = New System.Windows.Forms.TextBox()
+        Me.TxtThursday = New System.Windows.Forms.TextBox()
+        Me.TxtWednesday = New System.Windows.Forms.TextBox()
+        Me.TxtTuesday = New System.Windows.Forms.TextBox()
+        Me.TxtMonday = New System.Windows.Forms.TextBox()
+        Me.CboHFBFrequency = New System.Windows.Forms.ComboBox()
         Me.CboAwardStatus = New System.Windows.Forms.ComboBox()
         Me.LblTimestamp = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -165,7 +180,11 @@ Partial Class MainForm
         Me.BtnExportNotesHTML = New System.Windows.Forms.Button()
         Me.LblFolderPath = New System.Windows.Forms.Label()
         Me.LblOneNoteFolderPath = New System.Windows.Forms.Label()
-        Me.BtnExportNotesPlainText = New System.Windows.Forms.Button()
+        Me.GbxStage = New System.Windows.Forms.GroupBox()
+        Me.ChkHFB = New System.Windows.Forms.CheckBox()
+        Me.ChkIMPAT = New System.Windows.Forms.CheckBox()
+        Me.ChkPreBid = New System.Windows.Forms.CheckBox()
+        Me.Label45 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.GbxBidList.SuspendLayout()
@@ -177,6 +196,7 @@ Partial Class MainForm
         Me.GbxJournal.SuspendLayout()
         CType(Me.PicRAMPLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GbxStatus.SuspendLayout()
+        Me.GbxStage.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -364,7 +384,7 @@ Partial Class MainForm
         Me.BtnApplyFilter.Location = New System.Drawing.Point(178, 12)
         Me.BtnApplyFilter.Name = "BtnApplyFilter"
         Me.BtnApplyFilter.Size = New System.Drawing.Size(75, 23)
-        Me.BtnApplyFilter.TabIndex = 113
+        Me.BtnApplyFilter.TabIndex = 1
         Me.BtnApplyFilter.Text = "Apply"
         Me.BtnApplyFilter.UseVisualStyleBackColor = True
         '
@@ -460,7 +480,7 @@ Partial Class MainForm
         Me.BtnReset.Location = New System.Drawing.Point(719, 11)
         Me.BtnReset.Name = "BtnReset"
         Me.BtnReset.Size = New System.Drawing.Size(75, 23)
-        Me.BtnReset.TabIndex = 5
+        Me.BtnReset.TabIndex = 6
         Me.BtnReset.Text = "Reset"
         Me.BtnReset.UseVisualStyleBackColor = True
         '
@@ -477,7 +497,7 @@ Partial Class MainForm
         Me.BtnSearch.Location = New System.Drawing.Point(638, 11)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(75, 23)
-        Me.BtnSearch.TabIndex = 4
+        Me.BtnSearch.TabIndex = 5
         Me.BtnSearch.Text = "Search"
         Me.BtnSearch.UseVisualStyleBackColor = True
         '
@@ -486,7 +506,7 @@ Partial Class MainForm
         Me.TxtSearch.Location = New System.Drawing.Point(453, 13)
         Me.TxtSearch.Name = "TxtSearch"
         Me.TxtSearch.Size = New System.Drawing.Size(157, 20)
-        Me.TxtSearch.TabIndex = 3
+        Me.TxtSearch.TabIndex = 4
         '
         'RadStatus
         '
@@ -494,7 +514,7 @@ Partial Class MainForm
         Me.RadStatus.Location = New System.Drawing.Point(397, 14)
         Me.RadStatus.Name = "RadStatus"
         Me.RadStatus.Size = New System.Drawing.Size(55, 17)
-        Me.RadStatus.TabIndex = 2
+        Me.RadStatus.TabIndex = 3
         Me.RadStatus.Text = "Status"
         Me.RadStatus.UseVisualStyleBackColor = True
         '
@@ -505,7 +525,7 @@ Partial Class MainForm
         Me.RadCustomer.Location = New System.Drawing.Point(327, 14)
         Me.RadCustomer.Name = "RadCustomer"
         Me.RadCustomer.Size = New System.Drawing.Size(71, 17)
-        Me.RadCustomer.TabIndex = 1
+        Me.RadCustomer.TabIndex = 2
         Me.RadCustomer.TabStop = True
         Me.RadCustomer.Text = "Bid Name"
         Me.RadCustomer.UseVisualStyleBackColor = True
@@ -539,11 +559,7 @@ Partial Class MainForm
         Me.GbxBidInfo.Controls.Add(Me.CboAMGK)
         Me.GbxBidInfo.Controls.Add(Me.CboLeadGK)
         Me.GbxBidInfo.Controls.Add(Me.CboLeadRegion)
-        Me.GbxBidInfo.Controls.Add(Me.ChkUpcoming)
-        Me.GbxBidInfo.Controls.Add(Me.ChkUSBid)
-        Me.GbxBidInfo.Controls.Add(Me.LblID)
         Me.GbxBidInfo.Controls.Add(Me.ChkStandardFuel)
-        Me.GbxBidInfo.Controls.Add(Me.ChkBidActive)
         Me.GbxBidInfo.Controls.Add(Me.TxtPickupDay)
         Me.GbxBidInfo.Controls.Add(Me.Label35)
         Me.GbxBidInfo.Controls.Add(Me.TxtDimFactor)
@@ -552,10 +568,6 @@ Partial Class MainForm
         Me.GbxBidInfo.Controls.Add(Me.Label33)
         Me.GbxBidInfo.Controls.Add(Me.TxtRateValidity)
         Me.GbxBidInfo.Controls.Add(Me.Label18)
-        Me.GbxBidInfo.Controls.Add(Me.TxtBidReceived)
-        Me.GbxBidInfo.Controls.Add(Me.Label16)
-        Me.GbxBidInfo.Controls.Add(Me.TxtBidAssigned)
-        Me.GbxBidInfo.Controls.Add(Me.Label15)
         Me.GbxBidInfo.Controls.Add(Me.Label14)
         Me.GbxBidInfo.Controls.Add(Me.Label13)
         Me.GbxBidInfo.Controls.Add(Me.Label12)
@@ -572,9 +584,9 @@ Partial Class MainForm
         Me.GbxBidInfo.Controls.Add(Me.Label4)
         Me.GbxBidInfo.Controls.Add(Me.TxtBidID)
         Me.GbxBidInfo.Controls.Add(Me.Label3)
-        Me.GbxBidInfo.Location = New System.Drawing.Point(18, 124)
+        Me.GbxBidInfo.Location = New System.Drawing.Point(18, 272)
         Me.GbxBidInfo.Name = "GbxBidInfo"
-        Me.GbxBidInfo.Size = New System.Drawing.Size(314, 544)
+        Me.GbxBidInfo.Size = New System.Drawing.Size(314, 396)
         Me.GbxBidInfo.TabIndex = 0
         Me.GbxBidInfo.TabStop = False
         Me.GbxBidInfo.Text = "Details"
@@ -585,10 +597,10 @@ Partial Class MainForm
         Me.CboAnalyst.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAnalyst.FormattingEnabled = True
         Me.CboAnalyst.Items.AddRange(New Object() {"A Chomngarm ", "Alyson Guada ", "Angela Guasca ", "Danilo Siangko ", "Jared D'Costa ", "Jurparis Watson ", "Rodel Tarroza ", "Yuhan Fan "})
-        Me.CboAnalyst.Location = New System.Drawing.Point(111, 331)
+        Me.CboAnalyst.Location = New System.Drawing.Point(111, 278)
         Me.CboAnalyst.Name = "CboAnalyst"
         Me.CboAnalyst.Size = New System.Drawing.Size(194, 21)
-        Me.CboAnalyst.TabIndex = 13
+        Me.CboAnalyst.TabIndex = 10
         '
         'CboAMGK
         '
@@ -596,10 +608,10 @@ Partial Class MainForm
         Me.CboAMGK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboAMGK.FormattingEnabled = True
         Me.CboAMGK.Items.AddRange(New Object() {"Anil Pereira ", "Armin Gahse ", "Gregory Yarmushevich ", "Hendrik Bonse ", "Janine Colon ", "John Farrand"})
-        Me.CboAMGK.Location = New System.Drawing.Point(111, 305)
+        Me.CboAMGK.Location = New System.Drawing.Point(111, 252)
         Me.CboAMGK.Name = "CboAMGK"
         Me.CboAMGK.Size = New System.Drawing.Size(194, 21)
-        Me.CboAMGK.TabIndex = 12
+        Me.CboAMGK.TabIndex = 9
         '
         'CboLeadGK
         '
@@ -607,10 +619,10 @@ Partial Class MainForm
         Me.CboLeadGK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboLeadGK.FormattingEnabled = True
         Me.CboLeadGK.Items.AddRange(New Object() {"Anil Pereira ", "Armin Gahse ", "Gregory Yarmushevich ", "Hendrik Bonse ", "Janine Colon ", "John Farrand", "Alexandra Rizo", "Fatih Ozen", "Sandra Davila", "Xavier Bastidas"})
-        Me.CboLeadGK.Location = New System.Drawing.Point(111, 279)
+        Me.CboLeadGK.Location = New System.Drawing.Point(111, 226)
         Me.CboLeadGK.Name = "CboLeadGK"
         Me.CboLeadGK.Size = New System.Drawing.Size(194, 21)
-        Me.CboLeadGK.TabIndex = 11
+        Me.CboLeadGK.TabIndex = 8
         '
         'CboLeadRegion
         '
@@ -619,75 +631,32 @@ Partial Class MainForm
         Me.CboLeadRegion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CboLeadRegion.FormattingEnabled = True
         Me.CboLeadRegion.Items.AddRange(New Object() {"AMER", "EMEA", "APAC", "GAP"})
-        Me.CboLeadRegion.Location = New System.Drawing.Point(111, 253)
+        Me.CboLeadRegion.Location = New System.Drawing.Point(111, 200)
         Me.CboLeadRegion.Name = "CboLeadRegion"
         Me.CboLeadRegion.Size = New System.Drawing.Size(194, 21)
-        Me.CboLeadRegion.TabIndex = 10
-        '
-        'ChkUpcoming
-        '
-        Me.ChkUpcoming.AutoSize = True
-        Me.ChkUpcoming.Location = New System.Drawing.Point(213, 46)
-        Me.ChkUpcoming.Name = "ChkUpcoming"
-        Me.ChkUpcoming.Size = New System.Drawing.Size(92, 17)
-        Me.ChkUpcoming.TabIndex = 2
-        Me.ChkUpcoming.Text = "Upcoming Bid"
-        Me.ChkUpcoming.UseVisualStyleBackColor = True
-        '
-        'ChkUSBid
-        '
-        Me.ChkUSBid.AutoSize = True
-        Me.ChkUSBid.Location = New System.Drawing.Point(148, 46)
-        Me.ChkUSBid.Name = "ChkUSBid"
-        Me.ChkUSBid.Size = New System.Drawing.Size(59, 17)
-        Me.ChkUSBid.TabIndex = 1
-        Me.ChkUSBid.TabStop = False
-        Me.ChkUSBid.Text = "US Bid"
-        Me.ChkUSBid.UseVisualStyleBackColor = True
-        '
-        'LblID
-        '
-        Me.LblID.AutoSize = True
-        Me.LblID.Location = New System.Drawing.Point(7, 48)
-        Me.LblID.Name = "LblID"
-        Me.LblID.Size = New System.Drawing.Size(10, 13)
-        Me.LblID.TabIndex = 69
-        Me.LblID.Text = "-"
+        Me.CboLeadRegion.TabIndex = 7
         '
         'ChkStandardFuel
         '
         Me.ChkStandardFuel.AutoSize = True
-        Me.ChkStandardFuel.Location = New System.Drawing.Point(228, 515)
+        Me.ChkStandardFuel.Location = New System.Drawing.Point(228, 361)
         Me.ChkStandardFuel.Name = "ChkStandardFuel"
         Me.ChkStandardFuel.Size = New System.Drawing.Size(77, 17)
-        Me.ChkStandardFuel.TabIndex = 19
+        Me.ChkStandardFuel.TabIndex = 14
         Me.ChkStandardFuel.Text = "DGF Fuel?"
         Me.ChkStandardFuel.UseVisualStyleBackColor = True
         '
-        'ChkBidActive
-        '
-        Me.ChkBidActive.AutoSize = True
-        Me.ChkBidActive.Checked = True
-        Me.ChkBidActive.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkBidActive.Location = New System.Drawing.Point(86, 46)
-        Me.ChkBidActive.Name = "ChkBidActive"
-        Me.ChkBidActive.Size = New System.Drawing.Size(56, 17)
-        Me.ChkBidActive.TabIndex = 0
-        Me.ChkBidActive.TabStop = False
-        Me.ChkBidActive.Text = "Active"
-        Me.ChkBidActive.UseVisualStyleBackColor = True
-        '
         'TxtPickupDay
         '
-        Me.TxtPickupDay.Location = New System.Drawing.Point(111, 512)
+        Me.TxtPickupDay.Location = New System.Drawing.Point(111, 358)
         Me.TxtPickupDay.Name = "TxtPickupDay"
         Me.TxtPickupDay.Size = New System.Drawing.Size(76, 20)
-        Me.TxtPickupDay.TabIndex = 18
+        Me.TxtPickupDay.TabIndex = 13
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(6, 515)
+        Me.Label35.Location = New System.Drawing.Point(6, 361)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(65, 13)
         Me.Label35.TabIndex = 36
@@ -695,22 +664,22 @@ Partial Class MainForm
         '
         'TxtDimFactor
         '
-        Me.TxtDimFactor.Location = New System.Drawing.Point(111, 486)
+        Me.TxtDimFactor.Location = New System.Drawing.Point(111, 332)
         Me.TxtDimFactor.Name = "TxtDimFactor"
         Me.TxtDimFactor.Size = New System.Drawing.Size(195, 20)
-        Me.TxtDimFactor.TabIndex = 17
+        Me.TxtDimFactor.TabIndex = 12
         '
         'TxtTier
         '
-        Me.TxtTier.Location = New System.Drawing.Point(111, 200)
+        Me.TxtTier.Location = New System.Drawing.Point(111, 147)
         Me.TxtTier.Name = "TxtTier"
         Me.TxtTier.Size = New System.Drawing.Size(194, 20)
-        Me.TxtTier.TabIndex = 8
+        Me.TxtTier.TabIndex = 5
         '
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(6, 489)
+        Me.Label34.Location = New System.Drawing.Point(6, 335)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(60, 13)
         Me.Label34.TabIndex = 34
@@ -719,7 +688,7 @@ Partial Class MainForm
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(7, 203)
+        Me.Label33.Location = New System.Drawing.Point(7, 150)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(25, 13)
         Me.Label33.TabIndex = 64
@@ -727,56 +696,24 @@ Partial Class MainForm
         '
         'TxtRateValidity
         '
-        Me.TxtRateValidity.Location = New System.Drawing.Point(111, 460)
+        Me.TxtRateValidity.Location = New System.Drawing.Point(111, 306)
         Me.TxtRateValidity.Name = "TxtRateValidity"
         Me.TxtRateValidity.Size = New System.Drawing.Size(195, 20)
-        Me.TxtRateValidity.TabIndex = 16
+        Me.TxtRateValidity.TabIndex = 11
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(6, 463)
+        Me.Label18.Location = New System.Drawing.Point(6, 309)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(66, 13)
         Me.Label18.TabIndex = 32
         Me.Label18.Text = "Rate Validity"
         '
-        'TxtBidReceived
-        '
-        Me.TxtBidReceived.Location = New System.Drawing.Point(111, 408)
-        Me.TxtBidReceived.Name = "TxtBidReceived"
-        Me.TxtBidReceived.Size = New System.Drawing.Size(195, 20)
-        Me.TxtBidReceived.TabIndex = 15
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(7, 411)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(71, 13)
-        Me.Label16.TabIndex = 28
-        Me.Label16.Text = "Bid Received"
-        '
-        'TxtBidAssigned
-        '
-        Me.TxtBidAssigned.Location = New System.Drawing.Point(111, 382)
-        Me.TxtBidAssigned.Name = "TxtBidAssigned"
-        Me.TxtBidAssigned.Size = New System.Drawing.Size(195, 20)
-        Me.TxtBidAssigned.TabIndex = 14
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(7, 385)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(68, 13)
-        Me.Label15.TabIndex = 26
-        Me.Label15.Text = "Bid Assigned"
-        '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(7, 334)
+        Me.Label14.Location = New System.Drawing.Point(7, 281)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(41, 13)
         Me.Label14.TabIndex = 24
@@ -785,7 +722,7 @@ Partial Class MainForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(7, 308)
+        Me.Label13.Location = New System.Drawing.Point(7, 255)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(41, 13)
         Me.Label13.TabIndex = 22
@@ -794,7 +731,7 @@ Partial Class MainForm
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(7, 282)
+        Me.Label12.Location = New System.Drawing.Point(7, 229)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(49, 13)
         Me.Label12.TabIndex = 20
@@ -803,7 +740,7 @@ Partial Class MainForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(7, 256)
+        Me.Label11.Location = New System.Drawing.Point(7, 203)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(68, 13)
         Me.Label11.TabIndex = 18
@@ -811,15 +748,15 @@ Partial Class MainForm
         '
         'TxtNoOfRounds
         '
-        Me.TxtNoOfRounds.Location = New System.Drawing.Point(111, 226)
+        Me.TxtNoOfRounds.Location = New System.Drawing.Point(111, 173)
         Me.TxtNoOfRounds.Name = "TxtNoOfRounds"
         Me.TxtNoOfRounds.Size = New System.Drawing.Size(194, 20)
-        Me.TxtNoOfRounds.TabIndex = 9
+        Me.TxtNoOfRounds.TabIndex = 6
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(7, 229)
+        Me.Label8.Location = New System.Drawing.Point(7, 176)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(73, 13)
         Me.Label8.TabIndex = 12
@@ -827,15 +764,15 @@ Partial Class MainForm
         '
         'TxtCO
         '
-        Me.TxtCO.Location = New System.Drawing.Point(111, 174)
+        Me.TxtCO.Location = New System.Drawing.Point(111, 121)
         Me.TxtCO.Name = "TxtCO"
         Me.TxtCO.Size = New System.Drawing.Size(195, 20)
-        Me.TxtCO.TabIndex = 7
+        Me.TxtCO.TabIndex = 4
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(7, 177)
+        Me.Label7.Location = New System.Drawing.Point(7, 124)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(61, 13)
         Me.Label7.TabIndex = 10
@@ -843,15 +780,15 @@ Partial Class MainForm
         '
         'TxtBMT
         '
-        Me.TxtBMT.Location = New System.Drawing.Point(111, 148)
+        Me.TxtBMT.Location = New System.Drawing.Point(111, 95)
         Me.TxtBMT.Name = "TxtBMT"
         Me.TxtBMT.Size = New System.Drawing.Size(195, 20)
-        Me.TxtBMT.TabIndex = 6
+        Me.TxtBMT.TabIndex = 3
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(7, 151)
+        Me.Label6.Location = New System.Drawing.Point(7, 98)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(70, 13)
         Me.Label6.TabIndex = 8
@@ -859,15 +796,15 @@ Partial Class MainForm
         '
         'TxtBidName
         '
-        Me.TxtBidName.Location = New System.Drawing.Point(111, 122)
+        Me.TxtBidName.Location = New System.Drawing.Point(111, 69)
         Me.TxtBidName.Name = "TxtBidName"
         Me.TxtBidName.Size = New System.Drawing.Size(195, 20)
-        Me.TxtBidName.TabIndex = 5
+        Me.TxtBidName.TabIndex = 2
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(7, 125)
+        Me.Label5.Location = New System.Drawing.Point(7, 72)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 13)
         Me.Label5.TabIndex = 6
@@ -875,15 +812,15 @@ Partial Class MainForm
         '
         'TxtCustomer
         '
-        Me.TxtCustomer.Location = New System.Drawing.Point(111, 96)
+        Me.TxtCustomer.Location = New System.Drawing.Point(111, 43)
         Me.TxtCustomer.Name = "TxtCustomer"
         Me.TxtCustomer.Size = New System.Drawing.Size(195, 20)
-        Me.TxtCustomer.TabIndex = 4
+        Me.TxtCustomer.TabIndex = 1
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(7, 99)
+        Me.Label4.Location = New System.Drawing.Point(7, 46)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(51, 13)
         Me.Label4.TabIndex = 4
@@ -891,19 +828,94 @@ Partial Class MainForm
         '
         'TxtBidID
         '
-        Me.TxtBidID.Location = New System.Drawing.Point(111, 70)
+        Me.TxtBidID.Location = New System.Drawing.Point(111, 17)
         Me.TxtBidID.Name = "TxtBidID"
         Me.TxtBidID.Size = New System.Drawing.Size(195, 20)
-        Me.TxtBidID.TabIndex = 3
+        Me.TxtBidID.TabIndex = 0
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(7, 73)
+        Me.Label3.Location = New System.Drawing.Point(7, 20)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(36, 13)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Bid ID"
+        '
+        'ChkUpcoming
+        '
+        Me.ChkUpcoming.AutoSize = True
+        Me.ChkUpcoming.Location = New System.Drawing.Point(6, 18)
+        Me.ChkUpcoming.Name = "ChkUpcoming"
+        Me.ChkUpcoming.Size = New System.Drawing.Size(92, 17)
+        Me.ChkUpcoming.TabIndex = 0
+        Me.ChkUpcoming.Text = "Upcoming Bid"
+        Me.ChkUpcoming.UseVisualStyleBackColor = True
+        '
+        'ChkUSBid
+        '
+        Me.ChkUSBid.AutoSize = True
+        Me.ChkUSBid.Location = New System.Drawing.Point(111, 50)
+        Me.ChkUSBid.Name = "ChkUSBid"
+        Me.ChkUSBid.Size = New System.Drawing.Size(59, 17)
+        Me.ChkUSBid.TabIndex = 5
+        Me.ChkUSBid.TabStop = False
+        Me.ChkUSBid.Text = "US Bid"
+        Me.ChkUSBid.UseVisualStyleBackColor = True
+        '
+        'LblID
+        '
+        Me.LblID.AutoSize = True
+        Me.LblID.Location = New System.Drawing.Point(281, 97)
+        Me.LblID.Name = "LblID"
+        Me.LblID.Size = New System.Drawing.Size(10, 13)
+        Me.LblID.TabIndex = 69
+        Me.LblID.Text = "-"
+        '
+        'ChkBidActive
+        '
+        Me.ChkBidActive.AutoSize = True
+        Me.ChkBidActive.Checked = True
+        Me.ChkBidActive.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkBidActive.Location = New System.Drawing.Point(6, 50)
+        Me.ChkBidActive.Name = "ChkBidActive"
+        Me.ChkBidActive.Size = New System.Drawing.Size(56, 17)
+        Me.ChkBidActive.TabIndex = 2
+        Me.ChkBidActive.TabStop = False
+        Me.ChkBidActive.Text = "Active"
+        Me.ChkBidActive.UseVisualStyleBackColor = True
+        '
+        'TxtBidReceived
+        '
+        Me.TxtBidReceived.Location = New System.Drawing.Point(241, 42)
+        Me.TxtBidReceived.Name = "TxtBidReceived"
+        Me.TxtBidReceived.Size = New System.Drawing.Size(67, 20)
+        Me.TxtBidReceived.TabIndex = 7
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(185, 45)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(53, 13)
+        Me.Label16.TabIndex = 28
+        Me.Label16.Text = "Received"
+        '
+        'TxtBidAssigned
+        '
+        Me.TxtBidAssigned.Location = New System.Drawing.Point(241, 16)
+        Me.TxtBidAssigned.Name = "TxtBidAssigned"
+        Me.TxtBidAssigned.Size = New System.Drawing.Size(67, 20)
+        Me.TxtBidAssigned.TabIndex = 6
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(185, 18)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(50, 13)
+        Me.Label15.TabIndex = 26
+        Me.Label15.Text = "Assigned"
         '
         'TxtPortLaunch
         '
@@ -924,7 +936,7 @@ Partial Class MainForm
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 73)
+        Me.Label10.Location = New System.Drawing.Point(3, 118)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(70, 13)
         Me.Label10.TabIndex = 16
@@ -932,15 +944,15 @@ Partial Class MainForm
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(95, 19)
+        Me.TxtStatus.Location = New System.Drawing.Point(110, 68)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Size = New System.Drawing.Size(195, 20)
-        Me.TxtStatus.TabIndex = 0
+        Me.TxtStatus.TabIndex = 8
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(5, 22)
+        Me.Label9.Location = New System.Drawing.Point(3, 70)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(55, 13)
         Me.Label9.TabIndex = 14
@@ -1211,15 +1223,15 @@ Partial Class MainForm
         '
         'TxtPercentComplete
         '
-        Me.TxtPercentComplete.Location = New System.Drawing.Point(95, 44)
+        Me.TxtPercentComplete.Location = New System.Drawing.Point(110, 90)
         Me.TxtPercentComplete.Name = "TxtPercentComplete"
         Me.TxtPercentComplete.Size = New System.Drawing.Size(42, 20)
-        Me.TxtPercentComplete.TabIndex = 1
+        Me.TxtPercentComplete.TabIndex = 9
         '
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(5, 47)
+        Me.Label32.Location = New System.Drawing.Point(3, 93)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(65, 13)
         Me.Label32.TabIndex = 62
@@ -1362,20 +1374,151 @@ Partial Class MainForm
         '
         'GbxStatus
         '
-        Me.GbxStatus.Controls.Add(Me.CboAwardStatus)
-        Me.GbxStatus.Controls.Add(Me.LblTimestamp)
-        Me.GbxStatus.Controls.Add(Me.Label2)
-        Me.GbxStatus.Controls.Add(Me.TxtStatus)
-        Me.GbxStatus.Controls.Add(Me.Label9)
-        Me.GbxStatus.Controls.Add(Me.Label32)
-        Me.GbxStatus.Controls.Add(Me.TxtPercentComplete)
-        Me.GbxStatus.Controls.Add(Me.Label10)
+        Me.GbxStatus.Controls.Add(Me.Label45)
+        Me.GbxStatus.Controls.Add(Me.Label44)
+        Me.GbxStatus.Controls.Add(Me.Label42)
+        Me.GbxStatus.Controls.Add(Me.Label43)
+        Me.GbxStatus.Controls.Add(Me.Label41)
+        Me.GbxStatus.Controls.Add(Me.Label40)
+        Me.GbxStatus.Controls.Add(Me.TxtWeekEnd)
+        Me.GbxStatus.Controls.Add(Me.TxtWeekStart)
+        Me.GbxStatus.Controls.Add(Me.Label39)
+        Me.GbxStatus.Controls.Add(Me.Label38)
+        Me.GbxStatus.Controls.Add(Me.TxtFriday)
+        Me.GbxStatus.Controls.Add(Me.TxtThursday)
+        Me.GbxStatus.Controls.Add(Me.TxtWednesday)
+        Me.GbxStatus.Controls.Add(Me.TxtTuesday)
+        Me.GbxStatus.Controls.Add(Me.TxtMonday)
+        Me.GbxStatus.Controls.Add(Me.CboHFBFrequency)
         Me.GbxStatus.Location = New System.Drawing.Point(338, 124)
         Me.GbxStatus.Name = "GbxStatus"
         Me.GbxStatus.Size = New System.Drawing.Size(306, 119)
         Me.GbxStatus.TabIndex = 1
         Me.GbxStatus.TabStop = False
-        Me.GbxStatus.Text = "Status"
+        Me.GbxStatus.Text = "HFB/ADD"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(118, 100)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(13, 13)
+        Me.Label44.TabIndex = 92
+        Me.Label44.Text = "F"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(117, 79)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(14, 13)
+        Me.Label42.TabIndex = 91
+        Me.Label42.Text = "T"
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(115, 58)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(18, 13)
+        Me.Label43.TabIndex = 90
+        Me.Label43.Text = "W"
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(117, 37)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(14, 13)
+        Me.Label41.TabIndex = 89
+        Me.Label41.Text = "T"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(116, 16)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(16, 13)
+        Me.Label40.TabIndex = 88
+        Me.Label40.Text = "M"
+        '
+        'TxtWeekEnd
+        '
+        Me.TxtWeekEnd.Location = New System.Drawing.Point(77, 91)
+        Me.TxtWeekEnd.Name = "TxtWeekEnd"
+        Me.TxtWeekEnd.Size = New System.Drawing.Size(33, 20)
+        Me.TxtWeekEnd.TabIndex = 2
+        '
+        'TxtWeekStart
+        '
+        Me.TxtWeekStart.Location = New System.Drawing.Point(77, 67)
+        Me.TxtWeekStart.Name = "TxtWeekStart"
+        Me.TxtWeekStart.Size = New System.Drawing.Size(33, 20)
+        Me.TxtWeekStart.TabIndex = 1
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(9, 94)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(53, 13)
+        Me.Label39.TabIndex = 7
+        Me.Label39.Text = "Wk# End"
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(9, 70)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(56, 13)
+        Me.Label38.TabIndex = 6
+        Me.Label38.Text = "Wk# Start"
+        '
+        'TxtFriday
+        '
+        Me.TxtFriday.Location = New System.Drawing.Point(133, 97)
+        Me.TxtFriday.Name = "TxtFriday"
+        Me.TxtFriday.Size = New System.Drawing.Size(167, 20)
+        Me.TxtFriday.TabIndex = 7
+        '
+        'TxtThursday
+        '
+        Me.TxtThursday.Location = New System.Drawing.Point(133, 76)
+        Me.TxtThursday.Name = "TxtThursday"
+        Me.TxtThursday.Size = New System.Drawing.Size(167, 20)
+        Me.TxtThursday.TabIndex = 6
+        '
+        'TxtWednesday
+        '
+        Me.TxtWednesday.Location = New System.Drawing.Point(133, 55)
+        Me.TxtWednesday.Name = "TxtWednesday"
+        Me.TxtWednesday.Size = New System.Drawing.Size(167, 20)
+        Me.TxtWednesday.TabIndex = 5
+        '
+        'TxtTuesday
+        '
+        Me.TxtTuesday.Location = New System.Drawing.Point(133, 34)
+        Me.TxtTuesday.Name = "TxtTuesday"
+        Me.TxtTuesday.Size = New System.Drawing.Size(167, 20)
+        Me.TxtTuesday.TabIndex = 4
+        '
+        'TxtMonday
+        '
+        Me.TxtMonday.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.TxtMonday.Location = New System.Drawing.Point(133, 13)
+        Me.TxtMonday.Name = "TxtMonday"
+        Me.TxtMonday.Size = New System.Drawing.Size(167, 20)
+        Me.TxtMonday.TabIndex = 3
+        '
+        'CboHFBFrequency
+        '
+        Me.CboHFBFrequency.FormattingEnabled = True
+        Me.CboHFBFrequency.Items.AddRange(New Object() {"7 Days", "14 Days", "30 Days", "45 Days", "60 Days", "90 Days", "180 Days"})
+        Me.CboHFBFrequency.Location = New System.Drawing.Point(9, 30)
+        Me.CboHFBFrequency.Name = "CboHFBFrequency"
+        Me.CboHFBFrequency.Size = New System.Drawing.Size(101, 21)
+        Me.CboHFBFrequency.TabIndex = 0
+        Me.CboHFBFrequency.Text = "Timeframe"
         '
         'CboAwardStatus
         '
@@ -1384,15 +1527,16 @@ Partial Class MainForm
         Me.CboAwardStatus.FormattingEnabled = True
         Me.CboAwardStatus.IntegralHeight = False
         Me.CboAwardStatus.Items.AddRange(New Object() {"Pending Award", "Won", "Lost", "On Hold", "Stopped by DHL", "RFQ Avoidance", "Rate Extension", "Adder", "HFB"})
-        Me.CboAwardStatus.Location = New System.Drawing.Point(95, 70)
+        Me.CboAwardStatus.Location = New System.Drawing.Point(110, 113)
         Me.CboAwardStatus.Name = "CboAwardStatus"
         Me.CboAwardStatus.Size = New System.Drawing.Size(137, 21)
-        Me.CboAwardStatus.TabIndex = 2
+        Me.CboAwardStatus.TabIndex = 10
         '
         'LblTimestamp
         '
         Me.LblTimestamp.AutoSize = True
-        Me.LblTimestamp.Location = New System.Drawing.Point(93, 96)
+        Me.LblTimestamp.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LblTimestamp.Location = New System.Drawing.Point(1402, 112)
         Me.LblTimestamp.Name = "LblTimestamp"
         Me.LblTimestamp.Size = New System.Drawing.Size(10, 13)
         Me.LblTimestamp.TabIndex = 65
@@ -1401,7 +1545,8 @@ Partial Class MainForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(5, 96)
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label2.Location = New System.Drawing.Point(1314, 112)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(70, 13)
         Me.Label2.TabIndex = 64
@@ -1455,7 +1600,7 @@ Partial Class MainForm
         Me.LblTime.AutoSize = True
         Me.LblTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblTime.ForeColor = System.Drawing.Color.Gray
-        Me.LblTime.Location = New System.Drawing.Point(1706, 86)
+        Me.LblTime.Location = New System.Drawing.Point(1706, 81)
         Me.LblTime.Name = "LblTime"
         Me.LblTime.Size = New System.Drawing.Size(0, 31)
         Me.LblTime.TabIndex = 83
@@ -1467,7 +1612,7 @@ Partial Class MainForm
         'BtnLinkOneNote
         '
         Me.BtnLinkOneNote.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.BtnLinkOneNote.Location = New System.Drawing.Point(856, 86)
+        Me.BtnLinkOneNote.Location = New System.Drawing.Point(1027, 27)
         Me.BtnLinkOneNote.Name = "BtnLinkOneNote"
         Me.BtnLinkOneNote.Size = New System.Drawing.Size(129, 23)
         Me.BtnLinkOneNote.TabIndex = 13
@@ -1498,22 +1643,79 @@ Partial Class MainForm
         '
         Me.LblOneNoteFolderPath.AutoSize = True
         Me.LblOneNoteFolderPath.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.LblOneNoteFolderPath.Location = New System.Drawing.Point(860, 109)
+        Me.LblOneNoteFolderPath.Location = New System.Drawing.Point(1031, 50)
         Me.LblOneNoteFolderPath.Name = "LblOneNoteFolderPath"
         Me.LblOneNoteFolderPath.Size = New System.Drawing.Size(196, 13)
         Me.LblOneNoteFolderPath.TabIndex = 85
         Me.LblOneNoteFolderPath.Text = "My Documents/OneNote/Customer.one"
         Me.LblOneNoteFolderPath.Visible = False
         '
-        'BtnExportNotesPlainText
+        'GbxStage
         '
-        Me.BtnExportNotesPlainText.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.BtnExportNotesPlainText.Location = New System.Drawing.Point(1469, 85)
-        Me.BtnExportNotesPlainText.Name = "BtnExportNotesPlainText"
-        Me.BtnExportNotesPlainText.Size = New System.Drawing.Size(129, 23)
-        Me.BtnExportNotesPlainText.TabIndex = 86
-        Me.BtnExportNotesPlainText.Text = "Export Notes (text)"
-        Me.BtnExportNotesPlainText.UseVisualStyleBackColor = False
+        Me.GbxStage.Controls.Add(Me.CboAwardStatus)
+        Me.GbxStage.Controls.Add(Me.ChkHFB)
+        Me.GbxStage.Controls.Add(Me.ChkIMPAT)
+        Me.GbxStage.Controls.Add(Me.ChkPreBid)
+        Me.GbxStage.Controls.Add(Me.LblID)
+        Me.GbxStage.Controls.Add(Me.Label10)
+        Me.GbxStage.Controls.Add(Me.Label32)
+        Me.GbxStage.Controls.Add(Me.TxtPercentComplete)
+        Me.GbxStage.Controls.Add(Me.TxtStatus)
+        Me.GbxStage.Controls.Add(Me.Label9)
+        Me.GbxStage.Controls.Add(Me.ChkUpcoming)
+        Me.GbxStage.Controls.Add(Me.ChkBidActive)
+        Me.GbxStage.Controls.Add(Me.ChkUSBid)
+        Me.GbxStage.Controls.Add(Me.Label15)
+        Me.GbxStage.Controls.Add(Me.TxtBidAssigned)
+        Me.GbxStage.Controls.Add(Me.Label16)
+        Me.GbxStage.Controls.Add(Me.TxtBidReceived)
+        Me.GbxStage.Location = New System.Drawing.Point(18, 124)
+        Me.GbxStage.Name = "GbxStage"
+        Me.GbxStage.Size = New System.Drawing.Size(314, 142)
+        Me.GbxStage.TabIndex = 87
+        Me.GbxStage.TabStop = False
+        Me.GbxStage.Text = "Status"
+        '
+        'ChkHFB
+        '
+        Me.ChkHFB.AutoSize = True
+        Me.ChkHFB.Location = New System.Drawing.Point(111, 34)
+        Me.ChkHFB.Name = "ChkHFB"
+        Me.ChkHFB.Size = New System.Drawing.Size(47, 17)
+        Me.ChkHFB.TabIndex = 4
+        Me.ChkHFB.TabStop = False
+        Me.ChkHFB.Text = "HFB"
+        Me.ChkHFB.UseVisualStyleBackColor = True
+        '
+        'ChkIMPAT
+        '
+        Me.ChkIMPAT.AutoSize = True
+        Me.ChkIMPAT.Location = New System.Drawing.Point(111, 18)
+        Me.ChkIMPAT.Name = "ChkIMPAT"
+        Me.ChkIMPAT.Size = New System.Drawing.Size(59, 17)
+        Me.ChkIMPAT.TabIndex = 3
+        Me.ChkIMPAT.TabStop = False
+        Me.ChkIMPAT.Text = "IMPAT"
+        Me.ChkIMPAT.UseVisualStyleBackColor = True
+        '
+        'ChkPreBid
+        '
+        Me.ChkPreBid.AutoSize = True
+        Me.ChkPreBid.Location = New System.Drawing.Point(6, 34)
+        Me.ChkPreBid.Name = "ChkPreBid"
+        Me.ChkPreBid.Size = New System.Drawing.Size(60, 17)
+        Me.ChkPreBid.TabIndex = 1
+        Me.ChkPreBid.Text = "Pre-Bid"
+        Me.ChkPreBid.UseVisualStyleBackColor = True
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(6, 16)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(57, 13)
+        Me.Label45.TabIndex = 88
+        Me.Label45.Text = "Frequency"
         '
         'MainForm
         '
@@ -1521,7 +1723,9 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1884, 1015)
-        Me.Controls.Add(Me.BtnExportNotesPlainText)
+        Me.Controls.Add(Me.LblTimestamp)
+        Me.Controls.Add(Me.GbxStage)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.LblOneNoteFolderPath)
         Me.Controls.Add(Me.LblFolderPath)
         Me.Controls.Add(Me.BtnExportNotesHTML)
@@ -1568,6 +1772,8 @@ Partial Class MainForm
         CType(Me.PicRAMPLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GbxStatus.ResumeLayout(False)
         Me.GbxStatus.PerformLayout()
+        Me.GbxStage.ResumeLayout(False)
+        Me.GbxStage.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1714,5 +1920,24 @@ Partial Class MainForm
     Friend WithEvents BtnApplyFilter As Button
     Friend WithEvents ToolStripStatusFolderPath As ToolStripStatusLabel
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BtnExportNotesPlainText As Button
+    Friend WithEvents GbxStage As GroupBox
+    Friend WithEvents ChkHFB As CheckBox
+    Friend WithEvents ChkIMPAT As CheckBox
+    Friend WithEvents ChkPreBid As CheckBox
+    Friend WithEvents CboHFBFrequency As ComboBox
+    Friend WithEvents TxtWeekEnd As TextBox
+    Friend WithEvents TxtWeekStart As TextBox
+    Friend WithEvents Label39 As Label
+    Friend WithEvents Label38 As Label
+    Friend WithEvents TxtFriday As TextBox
+    Friend WithEvents TxtThursday As TextBox
+    Friend WithEvents TxtWednesday As TextBox
+    Friend WithEvents TxtTuesday As TextBox
+    Friend WithEvents TxtMonday As TextBox
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Label40 As Label
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Label42 As Label
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Label45 As Label
 End Class
